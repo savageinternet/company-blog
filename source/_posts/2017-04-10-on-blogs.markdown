@@ -7,4 +7,4 @@ categories: [games,real-world,fabrication]
 author: "Valkyrie"
 ---
 
-It would seem that blogs are spaces online, so we feel the need to welcome you bodily to ours.
+It would seem that blogs are treated somewhat like spaces online, so we feel the need to welcome you bodily to ours. We'll be posting here about games we're playing, things we're learning, and anything we're thinking about.

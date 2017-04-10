@@ -51,11 +51,21 @@ footer[role=contentinfo] {
     height: 60px;
 }
 
-header {
+header, .post-title, .entry-title {
   font-family: Roboto, sans-serif;
   font-weight: 900;
   font-style: italic;
   font-size: 30pt;
+}
+
+.post-title, .entry-title {
+  font-size: 24pt;
+}
+
+#recent_posts .list-group-item {
+  font-family: Roboto, sans-serif;
+  font-weight: 900;
+  font-style: italic;
 }
 
 .navbar, .navbar-default {
@@ -91,7 +101,7 @@ header {
   display:inline;
 }
 
-.previous, .next, .pager {
+.previous, .next, .pager, .meta.pager {
   font-family: Roboto;
   color: $color-link;
   border: 0px;
