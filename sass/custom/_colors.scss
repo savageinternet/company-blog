@@ -2,9 +2,22 @@
 // To give it a try, uncomment some of the lines below rebuild your blog, and see how it works.
 // If you need a handy color picker try http://hslpicker.com
 
-//$header-bg: #263347;
+// Savage Internet colours
+
+$color-r: #cd0f22;
+$color-o: #c63;
+$color-y: #fecd33;
+$color-g: #393;
+$color-b: #369;
+$color-v: #639;
+
+$color-bg: #fff;
+$color-fg: #322e22;
+$color-link: $color-b;
+
+$header-bg: $color-bg;
 //$subtitle-color: lighten($header-bg, 58);
-//$nav-bg: desaturate(lighten(#8fc17a, 18), 5);
+$nav-bg: $color-bg;
 //$nav-bg-front: image-url('noise.png');
 //$nav-bg-back: linear-gradient(lighten($nav-bg, 8), $nav-bg, darken($nav-bg, 11));
 //$sidebar-bg: desaturate(#eceff5, 8);
@@ -26,7 +39,7 @@
 //$base0:           #839496; //medium gray
 //$base1:           #93a1a1; //medium light gray
 //$base2:           #eee8d5; //cream
-//$base3:           #fdf6e3; //white
+//$base3:             #fcfcfc; //white
 //$solar-yellow:    #b58900;
 //$solar-orange:    #cb4b16;
 //$solar-red:       #dc322f;

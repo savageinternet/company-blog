@@ -1,0 +1,10 @@
+---
+layout: post
+title: "on blogs"
+date: 2017-04-10 13:43:58 -0400
+comments: true
+categories: [games,real-world,fabrication]
+author: "Valkyrie"
+---
+
+It would seem that blogs are spaces online, so we feel the need to welcome you bodily to ours.

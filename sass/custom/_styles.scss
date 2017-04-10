@@ -1,2 +1,132 @@
-// This File is imported last, and will override other styles in the cascade
-// Add styles here to make changes without digging in too much
+// FONTS
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url('/fonts/Roboto/Roboto-BlackItalic.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Muli'), url('/fonts/Muli/Muli-Regular.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+// CONTENT
+/* nice sticky footer, from http://getbootstrap.com/examples/sticky-footer/ */
+
+html, body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+    font-family: Muli, sans-serif;
+}
+
+a:link, a:visited {
+  color: lighten($color-link, 5%);
+}
+a:hover {
+  color: $color-link;
+}
+a:active {
+  color: darken($color-link, 5%);
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+footer[role=contentinfo] {
+    height: 60px;
+}
+
+header {
+  font-family: Roboto, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 30pt;
+}
+
+.navbar, .navbar-default {
+  border-bottom: 3px solid $color-g;
+}
+
+.logo {
+  display:inline;
+}
+
+.header {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  margin: auto;
+}
+
+.navbar, .navbar-default, .panel, .panel-default>.panel-heading {
+  background-color: $color-bg;
+  box-shadow: none;
+  background-image: none;
+}
+
+.header a:hover {
+  text-decoration:none;
+}
+
+.current {
+  color: $color-r;
+  display:inline;
+}
+
+.previous, .next, .pager {
+  font-family: Roboto;
+  color: $color-link;
+  border: 0px;
+}
+
+.date {
+  font-size:16px;
+}
+
+/* print page content only no header, footer and asides, works with any page layout */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  /* use .no-print if you want to hide something inside page-content from printing */
+  .no-print, .no-print * {
+    display: none !important;
+  }
+  .page-content, .page-content * {
+    visibility: visible;
+  }
+  .page-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.social {
+  text-align: center;
+  color: $color-r;
+  width: 100%;
+  padding-top: 12px;
+}
+
+.social img {
+  width: 75px;
+}
