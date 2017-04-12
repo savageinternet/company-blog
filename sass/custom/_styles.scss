@@ -120,6 +120,10 @@ header, .post-title, .entry-title {
   }
 }
 
+.sharing > * {
+  vertical-align: bottom;
+}
+
 .social {
   text-align: center;
   color: $color-r;
