@@ -17,6 +17,7 @@ description: Evan and Valkyrie Savage's musings on games, learning, and life.
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
+category_feeds: true
 subscribe_email:
 # RSS feeds can list your email address if you like
 email:

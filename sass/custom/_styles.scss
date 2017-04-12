@@ -7,6 +7,9 @@ html, body {
     font-family: Muli, sans-serif;
 }
 
+a {
+  text-decoration: underline;
+}
 a:link, a:visited {
   color: lighten($color-link, 5%);
 }
@@ -42,6 +45,10 @@ header, .post-title, .entry-title {
   font-weight: 900;
   font-style: italic;
   font-size: 32px;
+}
+
+header a, .post-title a, .entry-title a, .pager a {
+  text-decoration: none;
 }
 
 .post-title, .entry-title {
