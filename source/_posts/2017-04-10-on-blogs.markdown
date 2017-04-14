@@ -4,7 +4,7 @@ title: "on blogs"
 date: 2017-04-10 13:43:58 -0400
 comments: true
 categories: [games,real-world,fabrication]
-author: "Valkyrie"
+author: "Savage Internet Team"
 ---
 
 Welcome to the [Savage Internet](https://savageinter.net) company blog!  You can follow our blog via [RSS](http://localhost:4000/atom.xml) to keep on top of Savage Internet thoughts, announcements, and game design notes!
