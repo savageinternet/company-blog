@@ -1,0 +1,24 @@
+---
+layout: post
+title: "Zombies!"
+date: 2017-05-15 12:05:26 -0400
+comments: true
+categories: [games,real-life,education]
+author: "Savage Internet Team"
+published: false
+---
+
+* Amanda Veri - http://www.glse.utoronto.ca/amanda-veri-molecular-genetics
+* Elliann Fairbairn - https://ontariomolecularpathology.ca/content/elliann-fairbairn
+* game:
+ * existing: pandemic-style board game
+ * wanted: new audience (kids, ages 4-12)
+ * wanted: Science Rendezvous game (outdoors, short)
+* inspiration: junior park ranger booklets (https://www.nps.gov/kids/jrrangers.cfm)
+* process:
+ * brainstorm stops
+ * science content and "teachable moments"
+ * lay out activity booklet
+ * write a script wrapping the booklet (for distribution to volunteers)
+ * realize we need more activities
+ * brainstorm further activities
