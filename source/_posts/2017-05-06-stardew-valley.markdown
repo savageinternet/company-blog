@@ -8,7 +8,7 @@ author: "Evan"
 published: true
 ---
 
-Mental health is a difficult topic to handle in any media, and for that reason it's rarely addressed.  So when I started playing [Stardew Valley](http://stardewvalley.net/), I was surprised to find that it deals openly and inclusively with mental health issues.  From depression to PTSD to alcoholism to social anxiety, you'll get to know characters across the whole spectrum of DSM classifications, and you'll have a really great time doing so.
+Mental health is a difficult topic to handle in any medium, and for that reason it's rarely addressed.  So when I started playing [Stardew Valley](http://stardewvalley.net/), I was surprised to find that it deals openly and inclusively with mental health issues.  From depression to PTSD to alcoholism to social anxiety, you'll get to know characters across the whole spectrum of DSM classifications, and you'll have a really great time doing so.
 
 Aside from its willingness to break through the stigma surrounding mental health issues, Stardew Valley is also a really great game.  Of the 60 or so games that came in the [Humble Freedom Bundle](https://www.humblebundle.com/freedom) we purchased a while back, Stardew Valley is by far the one we've played the most, and I'll get into why it keeps drawing us back.
 
