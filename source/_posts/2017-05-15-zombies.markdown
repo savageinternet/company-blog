@@ -8,7 +8,7 @@ author: "Valkyrie"
 published: false
 ---
 
-Between volunteering at [TCAF](http://www.torontocomics.com/) and with the [Hand Eye Society](http://handeyesociety.com/) and visiting with a friend passing through town, we spent some time this weekend at Ryerson's [Science Rendezvous](http://www.ryerson.ca/sciencerendezvous/), an annual science fair and festival taking place across Toronto, talking about *zombies*.
+Between volunteering at [TCAF](http://www.torontocomics.com/) and with the [Hand Eye Society](http://handeyesociety.com/) and visiting with a friend passing through town, we spent some time this weekend at Ryerson's [Science Rendezvous](http://www.ryerson.ca/sciencerendezvous/), an annual science fair and festival taking place across Toronto, playing with the *science of zombies*.
 
 A couple months ago, we heard that two members of [SciCommTO](https://www.scicommto.com/), Toronto's meetup for science communicators, were working on a [Pandemic](https://en.wikipedia.org/wiki/Pandemic_(board_game))-style board game showcasing a zombie infection on Prince Edward Island. They had used the game to teach the basic principles of disease transmission, as well as emphasize the differences in infections caused by fungi, viruses, and bacteria.
 
@@ -22,36 +22,46 @@ These booklets have a range of activities, and they are built to accommodate mul
 
 We all agreed that this would be a great basis for the kind of experience we wanted to develop. The final product has a collection of activities which are completed at pre-defined stops, where volunteers keep the game moving with some hands-on activities and help participants complete the related booklet pages.
 
+## Characters
+
 ### Zombie
 
-![a zombie](/images/posts/zombie.jpg "one of our zombies")
+![zombies](/images/posts/zombies.jpg "our zombies")
 
 Zombies roam around the event, searching for kids and families to "infect" with zombism. Each zombie has a collection of activity booklets, which are coded to let other volunteers know which kind of infection each person has. When a zombie infects a player, they note the time (players have only 30 minutes to complete the game before they turn into zombies... forever!). Players take notes about the zombie: how it infected them, how it is behaving, and what it looks like. They are then encouraged to seek out a doctor to help them figure out what is wrong.
 
 ### Doctor
 
-![a doctor](/images/posts/doctor.jpg "one of our doctors")
+![doctor](/images/posts/doctor.jpg "our doctor")
 
 The doctor helps players "take a blood sample" so that they can identify things that don't belong. In this case, players learn what a virus, bacterium, and fungal spore look like: they also find out that one of these three things is causing their infection and learn more about how to prevent the spread of infections.
 
 ### Pathologist
 
-![a pathologist](/images/posts/pathologist.jpg "one of our pathologists")
+![pathologist](/images/posts/pathologist.jpg "our pathologist")
 
 A pathologist can create a culture of disease agents. Our pathologist takes the player's "blood sample" and gives them back a culture showing what that sample would look like when grown. For this, Amanda arranged real cultures of viral, bacterial, and fungal agents, which we sealed for the protection of participants (they were common agents, like bread yeast for the fungal agent, so this was mainly precautionary and not strictly necessary). Participants then had to match their culture to example cultures to determine which kind of infection they had.
 
 ### Researcher
 
-![a researcher](/images/posts/researcher.jpg "one of our researchers")
+![researcher](/images/posts/researcher.jpg "our researcher")
 
 With all the info about their infection in the bag, players scoot over to the researcher who helps them create a cure. In order to create something effective, it is necessary that players have correctly identified their infection, since a cure for a fungal infection does not work on a viral or bacterial infection! Players learn how drugs are designed, and complete a word search for new vocabulary learned in the course of the game.
 
 ### The end
 
-Once players get their cure, they again note the time. If they have completed the game within 30 minutes, they are free! The researcher gives them a sticker indicating that they are healthy and no longer infected with zombism. However, if not... players are now zombies! Either way, everybody gets a sticker.
+Once players get their cure, they again note the time. If they have completed the game within 30 minutes, they are free! The researcher writes a big "WIN" in green letters, certifying that they are healthy and no longer infected with zombism. However, if not... players are now zombies! Either way, everybody gets candy.
 
-![a zombified participant](/images/posts/zombified.jpg "one of our players, zombified")
+![zombified participant](/images/posts/zombified.jpg "one of our players, zombified")
 
 A final pair of pages in the book can be completed by participants after they've gone home. It encourages them to think about what they would want in case of a real zombie infestation, in terms of supplies, shelter, and skills.
 
-### Lessons learned
+## Lessons learned
+
+
+
+## Want to Play?
+
+Want to try out our game, even though you didn't make it to Science Rendezvous, or would you like to run Zombie Rendezvous at a similar event?
+
+[Take a look through our booklet](https://drive.google.com/file/d/0B0jF681JP2rJcnJySEhudktxenM/view?usp=sharing), and feel free to use it! We're hereby licensing it under [Creative Commons CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode). Here's a [printer-friendly version](https://drive.google.com/file/d/0B0jF681JP2rJaUxwZjZDaUVWbnc/view?usp=sharing), with pages flipped for proper printing and to conserve paper.
