@@ -10,6 +10,8 @@ published: true
 
 Between volunteering at [TCAF](http://www.torontocomics.com/) and with the [Hand Eye Society](http://handeyesociety.com/) and visiting with a friend passing through town, we spent some time this weekend at Ryerson's [Science Rendezvous](http://www.ryerson.ca/sciencerendezvous/), an annual science fair and festival taking place across Toronto, playing with the *science of zombies*.
 
+![Zombie Rendezvous Booklet](/images/posts/booklet.jpg "the booklet we developed for Zombie Rendezvous")
+
 A couple months ago, we heard that two members of [SciCommTO](https://www.scicommto.com/), Toronto's meetup for science communicators, were working on a [Pandemic](https://boardgamegeek.com/boardgame/30549/pandemic)-style board game showcasing a zombie infection on Prince Edward Island. They had used the game to teach the basic principles of disease transmission, as well as emphasize the differences in infections caused by fungi, viruses, and bacteria.
 
 Now, they wanted to bring the game and information to a wider audience. We met up with [Amanda Veri](http://www.glse.utoronto.ca/amanda-veri-molecular-genetics) and [Elliann Fairbairn](https://ontariomolecularpathology.ca/content/elliann-fairbairn) to think about how that might work. The main audience for Science Rendezvous is kids ages 4-12, which was very different from the audience their board game was designed for (high school kids and adults). The game also had to be made significantly shorter, so that it could hold the attention of a hypothetical family trying to navigate Yonge-Dundas square with science experiments and science magic shows on all sides of them. In addition, the game couldn't really require players to sit down to learn rules, and it had to be playable outdoors.
@@ -88,6 +90,6 @@ Overall, it was a satisfying day. While the game didn't take a super long time t
 
 Want to try out our game---even though you didn't make it to Science Rendezvous---, or would you like to run Zombie Rendezvous at a similar event?
 
-[Take a look through our booklet](https://drive.google.com/file/d/0B0jF681JP2rJcnJySEhudktxenM/view?usp=sharing), and feel free to use it! We're hereby licensing it under [Creative Commons CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Here's a [printer-friendly version](https://drive.google.com/file/d/0B0jF681JP2rJaUxwZjZDaUVWbnc/view?usp=sharing), with pages flipped for proper printing and to conserve paper.
+[Take a look through our booklet](https://drive.google.com/file/d/0B0jF681JP2rJcnJySEhudktxenM/view?usp=sharing), and feel free to use it! We're hereby licensing it under [Creative Commons CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), which allows you to reuse it for non-commercial purposes, and even make changes to it, as long as you cite us as the source and allow other people to adapt your booklet in the same way. Here's a [printer-friendly version of hte booklet](https://drive.google.com/file/d/0B0jF681JP2rJaUxwZjZDaUVWbnc/view?usp=sharing), with pages flipped for proper printing and to conserve paper.
 
 ![group shot](/images/posts/group.jpg "all of us who worked on the game!")
