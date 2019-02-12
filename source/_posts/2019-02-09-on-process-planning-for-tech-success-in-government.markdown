@@ -1,5 +1,5 @@
 ---
-layout: post d
+layout: post
 title: "On Process: Planning for Tech Success in Government"
 date: 2019-02-09 10:17:26 -0500
 comments: true
@@ -50,7 +50,7 @@ User interviews went on, and we continued to refine our understanding of the ser
 
 ![Tech Strategy Header](/images/posts/tech-strategy-header.png "Header of our tech strategy document, detailing our high-level goals")
 
-You can [read the full text on Notion](https://www.notion.so/bditto/Tech-Strategy-a25662cff3304c6d9b4f54244fe08912).  This gave us a way to clearly communicate our technical plans to our stakeholders, and it gave them something specific to provide feedback on.
+As you can see, it's a living document rather than a strict specification: I update this as requirements, goals, and opportunities change.  You can [read the full text on Notion](https://www.notion.so/bditto/Tech-Strategy-a25662cff3304c6d9b4f54244fe08912).  This gave us a way to clearly communicate our technical plans to our stakeholders, and it gave them something specific to provide feedback on.
 
 # The Cloud
 
@@ -82,20 +82,28 @@ With our Tech Strategy in hand, and our City-approved AWS stack set to arrive, i
 This part depends on many factors:
 
 - the *development team*: Who's developing this, and what skills do they have?  Which tools / frameworks are they most familiar with?
+- the *project*: What's the timeline and budget for the project?  How robust does it have to be?
 - the *users*: What problem do they need solved?  What forms do potential solutions take?  How technically savvy are they?
-- the *organization*: What skills does the organization have access to?  What will help them maintain the product?
+- the *organization*: What skills does the organization have access to?  What will help them maintain the product?  What are their requirements around security, accessibility, perfomance, open-source licensing, etc.?
+- the *tech ecosystem*: Which tools and frameworks solve the problem?  What are the tradeoffs between them?  Which tradeoffs make the most sense?
 
-You can't answer these questions without a clear direction based on user and technical research - otherwise, you're stabbing in the dark!  Is it a webapp?  A backend service?  A Google Form and a spreadsheet?  A mobile app?  What does it need to do, in broad terms?  What problem are you solving, and who are you solving it for?
+You can't answer these questions without a clear direction based on user and technical research - otherwise, you're stabbing in the dark!  Getting to that stage took several weeks, a couple dozen interviews, countless email chains, face-to-face meetings with BDIT, and enough post-it notes to put some 3M exec's kids through school.
 
-Getting to that stage took several weeks, a couple dozen interviews, countless email chains, face-to-face meetings with BDIT, and enough post-it notes to put some 3M exec's kids through school.  It was a lot, but we got there!
+It took a *lot* of work, but we got to a working hypothesis:
+
+{% blockquote January Project Panel Slides %}
+We believe that by creating an integrated data platform for Data Supervisors and Traffic Ops, we’ll achieve a seamless count and collision request to warrant process as well as trust and shared understanding.
+{% endblockquote %}
+
+Given everything we'd learned, this likely meant a user-facing web application plus some eventual scripting work to automate data intake, validation, and publishing pipelines.  From here, I could plan the webapp tech stack.
 
 ## Database
 
-[PostgreSQL](https://www.postgresql.org/) was the clear choice here.  BDIT has extensive experience with PostgreSQL, Cloud Services was pushing projects onto PostgreSQL, Open Data is using PostgreSQL already, GCC is moving onto PostgreSQL, and so on.  Everywhere we looked, divisions were either already either using PostgreSQL or seriously considering it.
+[PostgreSQL](https://www.postgresql.org/) was the clear choice here.  BDIT has extensive experience with PostgreSQL, Cloud Services offers PostgreSQL, Open Data is using PostgreSQL already, GCC is moving onto PostgreSQL, and so on.  Everywhere we looked, divisions were either already using PostgreSQL or seriously considering it.
 
 It helps, of course, that PostgreSQL is a mature, well-tested database platform with excellent geospatial support through [PostGIS](https://postgis.net/).
 
-## webapp Server
+## Web Application Server
 
 Python and JavaScript were the two main candidates here, as both were supported by Cloud Services and familiar to BDIT.  I decided on JavaScript, as I have more experience with node.js-based webapps.  (This is a reasonable rule of thumb: all else being equal, use what you're most familiar with!)
 
@@ -123,7 +131,7 @@ const options = {
 
 ## Web Frontend
 
-Reactive component frameworks like [React](https://reactjs.org/) and [Vue](https://vuejs.org/) are the clear best practice for dynamic webapp frontends.  It's not hard to see why: they take an age-old problem in webapp UI development - keeping the UI in sync with changing state - and they solve it well.
+Reactive component frameworks like [React](https://reactjs.org/) and [Vue](https://vuejs.org/) take an age-old problem in webapp UI development - keeping the UI in sync with changing state - and they solve it well.  They can be overkill for smaller projects, but the modularity they enforce makes it much easier to manage larger webapp projects.
 
 I chose Vue here: I'm more familiar with it than with React, and I prefer its clear separation of HTML, JS, and CSS code.  (See the above rule of thumb.)
 
@@ -131,17 +139,22 @@ I chose Vue here: I'm more familiar with it than with React, and I prefer its cl
 
 This is usually the most confusing part for new webapp developers: transpiling, minifying, bundling, preprocessing, and so on.  Where to start?  Which tools to pick?  How to configure them?
 
-At the same time, these tools are all valuable, as they enable the use of modern HTML, JS, and CSS features while maintaining cross-browser support.  Nowadays, I reach for a pretty standard toolchain for any medium-to-large dynamic webapp project:
+At the same time, these tools are all valuable, as they enable the use of modern HTML, JS, and CSS features while maintaining cross-browser support:
 
-- [browserslist](https://github.com/browserslist/browserslist) to define supported browsers;
-- [PostCSS](https://postcss.org/) plus [postcss-nested](https://github.com/postcss/postcss-nested) for CSS preprocessing;
-- [Babel](https://babeljs.io/) to make it easier;
-- [webpack](https://webpack.js.org/) to bundle static resources, and to minify for production;
-- [webpack-dev-server](https://webpack.js.org/guides/development/) to serve those resources locally during development.
+- [browserslist](https://github.com/browserslist/browserslist) defines supported browsers;
+- [PostCSS](https://postcss.org/) plus [postcss-nested](https://github.com/postcss/postcss-nested) preprocesses CSS, allowing you to use modern CSS features while maintaining compatibility with browsers defined in `browserslist`;
+- [Babel](https://babeljs.io/) does for JavaScript what `postcss` does for CSS, allowing you to use ES6+ features while maintaining browser support;
+- [webpack](https://webpack.js.org/) bundles static resources and helps with production tasks like minification;
+- [webpack-dev-server](https://webpack.js.org/guides/development/) offers hot-reloading in development, so you can instantly see changes to frontend code upon save.
 
 See our [Vue webapp template](https://github.com/code-for-canada/bdit-webapp-template) for more details on configuration here.
 
 # Source Control
+
+{% blockquote Jack William Bell https://perl.plover.com/classes/git/samples/slide034.html Linus Torvalds' Greatest Invention %}
+It is easy to shoot your foot off with git,
+but also easy to revert to a previous foot and merge it with your current leg.
+{% endblockquote %}
 
 Every development project should start with source control.  In our case, the Big Data Innovation Team uses both private and public repos on Github.  Our project is internal-only, so I made a private repo on Github.
 
@@ -154,25 +167,28 @@ For source code, head over to [bdit-webapp-template](https://github.com/code-for
 
 There's a login form tied to [hapi-auth-cookie](https://github.com/hapijs/hapi-auth-cookie):
 
-TODO: screenshot
+![Sample Application Login](/images/posts/sample-login.png "Sample Application Login Page")
 
 For now, the username and password are hardcoded in `lib/config.js`.  This file is explicitly `.gitignore`'d to prevent leaking credentials through source control.
 
 After you log in, you're greeted with this homepage:
 
-TODO: screenshot
+![Sample Application Homepage](/images/posts/sample-home.png "Sample Application Home Page")
 
 There's a logout feature, to test that we can clear our authentication cookie properly.  Login and logout are handled by `POST /login` and `POST /logout` respectively in our `hapi`-based REST API server.
 
 Clicking on "About" brings you to the truly dynamic part:
 
-TODO: screenshot
+![Sample Application Dynamic](/images/posts/sample-about.png "Sample Application Dynamic About Page")
 
 This is where the database and REST API server come in!  There's a single table `"TEST"."COUNTER"` with a single row:
 
 ```
 psql> SELECT * FROM "TEST"."COUNTER";
-
+ n
+---
+ 0
+(1 row)
 ```
 
 Our [REST API server](https://github.com/code-for-canada/bdit-webapp-template/blob/master/server.js) offers three counter-related endpoints:
@@ -384,3 +400,8 @@ I added [pylint](https://www.pylint.org/) for Python, [PSScriptAnalyzer](https:/
 
 Note that I've also added [npm audit](https://docs.npmjs.com/cli/audit), which flags npm packages in your project with known vulnerabilities.  Solid pre-commit hooks are an essential part of maintaining code readability, quality, and security!
 
+# Last Thoughts
+
+Phew!  It sounds like a lot of work, but some technical due diligence up front saves loads of effort later.  It's always easier to integrate best practices like end-to-end testing, pre-commit hooks, etc. into a fresh project than it is to shoehorn them into an existing legacy codebase.  If you have the chance, why not do it when it's easy?  Your future team will thank you.
+
+I've also been busy setting up a replication pipeline between Oracle and PostgreSQL, which I might explain in a future blog post (time permitting).  We'll soon be starting in on development, so look forward to more technical deep-dives!
