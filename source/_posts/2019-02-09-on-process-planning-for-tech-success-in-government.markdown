@@ -9,7 +9,7 @@ author: "Evan Savage"
 
 ![Header Image](/images/posts/dilbert-agile.gif "Dilbert comic strip.  PHB: We're going to try something called Agile Programming. // That means no more planning and no more documentation.  Just start writing code and complaining. // Wally: I'm glad it has a name.  // PHB: That was your training.")
 
-In this long-overdue reboot of the Savage Internet blog, I talk about setting up a modern web application development environment at the City of Toronto, as part of my [Code for Canada fellowship project](https://medium.com/code-for-canada/meet-the-2018-code-for-canada-fellows-595726b85817).  This is a follow-up to [this less technical intro](TODO) on our [team Tumblr](https://c4ctoronto2018.tumblr.com/) (which you should also check out!)
+In this long-overdue reboot of the Savage Internet blog, I talk about setting up a modern web application development environment at the City of Toronto, as part of my [Code for Canada fellowship project](https://medium.com/code-for-canada/meet-the-2018-code-for-canada-fellows-595726b85817).  This is a follow-up to [this less technical intro](https://c4ctoronto2018.tumblr.com/post/182766024156/on-process) on our [team Tumblr](https://c4ctoronto2018.tumblr.com/) (which you should also check out!)
 
 Let's dive in!
 
