@@ -1,11 +1,11 @@
 ## To write a blogpost
 
-rake new_post["title"]
+bundle exec rake new_post["title"]
 
 ## To test a new post (at localhost:4000)
 
-rake generate && rake preview
+bundle exec rake generate && bundle exec rake preview
 
 ## To publish a blogpost to the live site
 
-rake generate && rake deploy
+bundle exec rake generate && bundle exec rake deploy
