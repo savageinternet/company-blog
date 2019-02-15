@@ -241,7 +241,7 @@ The combination of `rewrite` and `proxy_pass` here achieves much the same thing 
 
 With a sample application up and running, it was time to focus on making sure we could test everything.
 
-During the Vue CLI project initialization, I also set up [Jest](https://jestjs.io/) for unit testing and [Cypress](https://www.cypress.io/) for end-to-end browser testing.  `@vue/cli-plugin-unit-jest` sadly isn't compatible out-of-box with `@babel/core yet, but you can follow [these instructions](https://github.com/vuejs/vue-cli/issues/1584#issuecomment-460786298) to get it working.
+During the Vue CLI project initialization, I also set up [Jest](https://jestjs.io/) for unit testing and [Cypress](https://www.cypress.io/) for end-to-end browser testing.  `@vue/cli-plugin-unit-jest` sadly isn't compatible out-of-box with `@babel/core` yet, but you can follow [these instructions](https://github.com/vuejs/vue-cli/issues/1584#issuecomment-460786298) to get it working.
 
 For Cypress, I ran into a [well-known issue](https://github.com/cypress-io/cypress/issues/733) with installing Cypress binaries behind a corporate proxy.  To fix this, I had to [download the binaries manually](https://docs.cypress.io/guides/getting-started/installing-cypress.html#Direct-download), then move them into the appropriate Cypress cache directory; this causes the post-install script to skip downloading.
 
