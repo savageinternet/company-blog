@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Real-world | The Savage Internet Blog]]></title>
+  <link href="https://blog.savageinter.net/blog/categories/real-world/atom.xml" rel="self"/>
+  <link href="https://blog.savageinter.net/"/>
+  <updated>2022-01-22T15:12:13+00:00</updated>
+  <id>https://blog.savageinter.net/</id>
+  <author>
+    <name><![CDATA[The Savage Internet Team]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[On Blogs]]></title>
+    <link href="https://blog.savageinter.net/blog/2017/04/10/on-blogs/"/>
+    <updated>2017-04-10T13:43:58-04:00</updated>
+    <id>https://blog.savageinter.net/blog/2017/04/10/on-blogs</id>
+    <content type="html"><![CDATA[<p>Welcome to the <a href="https://savageinter.net">Savage Internet</a> company blog!  You can follow our blog via <a href="http://localhost:4000/atom.xml">RSS</a> to keep on top of Savage Internet thoughts, announcements, and game design notes!</p>
+
+<p>We&rsquo;re currently preparing for our upcoming July release of The Puzzling Madness of John A. Macdonald, a scavenger / puzzle hunt set in Confederation-era Toronto.  We&rsquo;ll have more information as development continues!  In the meantime, those interested in playtesting the game before July can fill out our <a href="https://goo.gl/forms/1sLRIZEUzEf9ViLJ3">playtester signup form</a>.</p>
+
+<p>We&rsquo;re also working with Toronto-area scientists to plan something exciting for <a href="http://www.ryerson.ca/sciencerendezvous/">Science Rendezvous Dundas Square</a> on May 13, 2017.  Until then, our lips are sealed - you&rsquo;ll have to attend or wait until afterwards for the recap, which we&rsquo;ll post here!</p>
+]]></content>
+  </entry>
+  
+</feed>

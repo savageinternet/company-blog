@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[The Savage Internet Blog]]></title>
+  <link href="https://blog.savageinter.net/atom.xml" rel="self"/>
+  <link href="https://blog.savageinter.net/"/>
+  <updated>2022-01-22T15:12:13+00:00</updated>
+  <id>https://blog.savageinter.net/</id>
+  <author>
+    <name><![CDATA[The Savage Internet Team]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[On Process: Planning for Tech Success in Government]]></title>
+    <link href="https://blog.savageinter.net/blog/2019/02/09/on-process-planning-for-tech-success-in-government/"/>
+    <updated>2019-02-09T10:17:26-05:00</updated>
+    <id>https://blog.savageinter.net/blog/2019/02/09/on-process-planning-for-tech-success-in-government</id>
+    <content type="html"><![CDATA[<p><img src="https://blog.savageinter.net/images/posts/dilbert-agile.gif" title="Dilbert comic strip.  PHB: We're going to try something called Agile Programming. // That means no more planning and no more documentation.  Just start writing code and complaining. // Wally: I'm glad it has a name.  // PHB: That was your training." alt="Header Image" /></p>
+
+<p>In this long-overdue reboot of the Savage Internet blog, I talk about setting up a modern web application development environment at the City of Toronto, as part of my <a href="https://medium.com/code-for-canada/meet-the-2018-code-for-canada-fellows-595726b85817">Code for Canada fellowship project</a>.  This is a follow-up to <a href="https://c4ctoronto2018.tumblr.com/post/182766024156/on-process">this less technical intro</a> on our <a href="https://c4ctoronto2018.tumblr.com/">team Tumblr</a> (which you should also check out!)</p>
+
+<p>Let&rsquo;s dive in!</p>
+
+<h1>Getting Access</h1>
+
+<p>My first goal was to get admin access on our City IT-issued development machine.  To do that, I had to send in an Elevated Access Request, wait a week, make sure the account worked, install City certificates on the laptop for VPN access, call IT a couple of times to fix issues that popped up.  (Hey, we were warned that some of this could take a while.)</p>
+
+<p>While I waited, I asked around for the database access we needed.  Our project involves working with 25 years of existing City collision and traffic volume data - but to work effectively with that data, we needed to understand it first!  I started by requesting read-only access, which was easier for IT to grant.  This gave us breathing room to build trust with stakeholders and show value through our user research process, which made it much easier 2 months later when I asked for the full access we needed.</p>
+
+<p>In the meantime, I&rsquo;d also bought myself valuable technical planning time.</p>
+
+<h1>Technical Interviews</h1>
+
+<p>To make an informed plan, however, I first needed to know more about the available tools, services, and technical capacity at the City.  Time for some interviews!  In parallel with our <a href="https://c4ctoronto2018.tumblr.com/post/180411008431/user-interviews-action-shot-here-were">user interviews</a>, I held technical interviews with key IT groups:</p>
+
+<ul>
+<li><a href="https://portal0.cf.opendata.inter.sandbox-toronto.ca/">Open Data</a>: How can we help you publish more collision and traffic volume data?  What do your data publishing systems look like?  Do you have standards around timestamps, locations, or other fields?</li>
+<li><a href="https://www.toronto.ca/311/knowledgebase/kb/docs/contacts/information-and-technology/contact-list-information-and-technology-enterprise-solutions-delivery-geospatial-competency-centre.html">Geospatial Competency Centre</a>: How often are your basemaps updated?  How current is the <a href="https://portal0.cf.opendata.inter.sandbox-toronto.ca/dataset/toronto-centreline-tcl-2/">centreline data</a> on Open Data?  How can we help you share more collision and traffic volume data internally?</li>
+<li><a href="https://www.toronto.ca/services-payments/streets-parking-transportation/road-safety/big-data-innovation-team/">Big Data Innovation Team</a> (BDIT): What tools, languages, and types of development are you familiar with?  What would make it easier for you to sustain this project after our fellowship?</li>
+<li>Data Owners: Where would I find documentation on these datasets?  What pitfalls should I be aware of in using them?  Which parts of these datasets are considered sensitive?</li>
+</ul>
+
+
+<p>After all, these IT groups are <em>also</em> users of the systems we&rsquo;re building, so it&rsquo;s equally important to get their input during the research process!</p>
+
+<h1>Data Map</h1>
+
+<p>By this point, insights were starting to roll in from our user interviews.  To combine that emerging picture with what I&rsquo;d learned from technical interviews, I mapped out how data moved around the organization.  The first version of this &ldquo;data map&rdquo; was hastily scrawled on a whiteboard:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/data-map-whiteboard.jpg" title="Whiteboard flowchart showing how collision and traffic volume data move between organizations and divisions at the City of Toronto" alt="Whiteboard Data Map" /></p>
+
+<p>As it turned out, this was the perfect place to put it.  Whenever someone in our office noticed a problem with our map, they&rsquo;d approach us to help fix it - hallway testing isn&rsquo;t just for software!  Eventually, we expanded this into a more polished version:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/data-map-printed.jpg" title="Printed data map, complete with fancy colours and names attached to the various divisions" alt="Printed Data Map" /></p>
+
+<p>This data map proved invaluable in user research: when we went to interview users, we could situate their use case on this map and understand how they fit in with the broader technical picture.</p>
+
+<h1>Tech Strategy</h1>
+
+<p>User interviews went on, and we continued to refine our understanding of the services we&rsquo;d come to improve.  On the tech side, this allowed me to coalesce technical requirements, goals, and opportunities into a Tech Strategy:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/tech-strategy-header.png" title="Header of our tech strategy document, detailing our high-level goals" alt="Tech Strategy Header" /></p>
+
+<p>As you can see, it&rsquo;s a living document rather than a strict specification: I update this as requirements, goals, and opportunities change.  You can <a href="https://www.notion.so/bditto/Tech-Strategy-a25662cff3304c6d9b4f54244fe08912">read the full text on Notion</a>.  This gave us a way to clearly communicate our technical plans to our stakeholders, and it gave them something specific to provide feedback on.</p>
+
+<h1>The Cloud</h1>
+
+<p>We&rsquo;d been discussing cloud deployment from Day 1.  As it turned out, BDIT had a EC2 instance and PostgreSQL RDS, and they were looking to serve webapps from it.  This led to an early win-win: I helped them set up <a href="https://www.nginx.com/">nginx</a>, they shared <code>sudo</code> access to their EC2 instance.</p>
+
+<p>This was only a temporary solution, though - fine for early prototyping, but you don&rsquo;t want to be running production software on someone else&rsquo;s experimental data analysis machine.  On BDIT&rsquo;s suggestion, we reached out to Cloud Services for an initial chat, where they explained their available AWS stack to us:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/vpc-elb-stack.png" title="City of Toronto AWS stack" alt="Tech Strategy Header" /></p>
+
+<p>Here we have an <a href="https://aws.amazon.com/autoscaling/">autoscaling pool</a> behind an <a href="https://aws.amazon.com/elasticloadbalancing/">Elastic Load Balancer</a>, all backed by a <a href="https://aws.amazon.com/rds/postgresql/">PostgreSQL RDS</a>, and all within a <a href="https://aws.amazon.com/vpc/">Virtual Private Cloud</a>.  Perfect!  I updated our Tech Strategy to take this new environment into account and came up with these specific asks:</p>
+
+<ul>
+<li>a <em>main stack</em> for serving our webapp;</li>
+<li>a <em>transfer EC2 instance</em> for moving data from Oracle to PostgreSQL.</li>
+</ul>
+
+
+<p>Having a clear Tech Strategy shifted this discussion from &ldquo;OK, so what do you need?&rdquo; to &ldquo;What else can Cloud Services provide?&rdquo;  A lot, as it turned out:</p>
+
+<ul>
+<li>ready-made <a href="https://aws.amazon.com/cloudformation/">CloudFormation</a> templates to provision EC2 instances;</li>
+<li>production-ready, City-approved SSL certificates;</li>
+<li>help with setting up <a href="https://openid.net/connect/">OpenID Connect</a>-based authentication;</li>
+<li>ongoing work to move to the <a href="https://aws.amazon.com/about-aws/whats-new/2016/12/announcing-the-aws-canada-central-region/">AWS Canada (Central) region</a> to mitigate data territoriality concerns;</li>
+<li>CodeDeploy / CodePipeline integration for CI / CD.</li>
+</ul>
+
+
+<p>In turn, the backing of Cloud Services helped convince stakeholders that we could deploy to the cloud while preserving data privacy.</p>
+
+<h1>Choosing a Tech Stack</h1>
+
+<p>With our Tech Strategy in hand, and our City-approved AWS stack set to arrive, it was time to decide on a tech stack for the product.</p>
+
+<p>This part depends on many factors:</p>
+
+<ul>
+<li>the <em>development team</em>: Who&rsquo;s developing this, and what skills do they have?  Which tools / frameworks are they most familiar with?</li>
+<li>the <em>project</em>: What&rsquo;s the timeline and budget for the project?  How robust does it have to be?</li>
+<li>the <em>users</em>: What problem do they need solved?  What forms do potential solutions take?  How technically savvy are they?</li>
+<li>the <em>organization</em>: What skills does the organization have access to?  What will help them maintain the product?  What are their requirements around security, accessibility, perfomance, open-source licensing, etc.?</li>
+<li>the <em>tech ecosystem</em>: Which tools and frameworks solve the problem?  What are the tradeoffs between them?  Which tradeoffs make the most sense?</li>
+</ul>
+
+
+<p>You can&rsquo;t answer these questions without a clear direction based on user and technical research - otherwise, you&rsquo;re stabbing in the dark!  Getting to that stage took several weeks, a couple dozen interviews, countless email chains, face-to-face meetings with BDIT, and enough post-it notes to put some 3M exec&rsquo;s kids through school.</p>
+
+<p>It took a <em>lot</em> of work, but we got to a working hypothesis:</p>
+
+<blockquote><p>We believe that by creating an integrated data platform for Data Supervisors and Traffic Ops, we’ll achieve a seamless count and collision request to warrant process as well as trust and shared understanding.</p><footer><strong>January Project Panel Slides</strong></footer></blockquote>
+
+
+<p>Given everything we&rsquo;d learned, this likely meant a user-facing web application plus some eventual scripting work to automate data intake, validation, and publishing pipelines.  From here, I could plan the webapp tech stack.</p>
+
+<h2>Database</h2>
+
+<p><a href="https://www.postgresql.org/">PostgreSQL</a> was the clear choice here.  BDIT has extensive experience with PostgreSQL, Cloud Services offers PostgreSQL, Open Data is using PostgreSQL already, GCC is moving onto PostgreSQL, and so on.  Everywhere we looked, divisions were either already using PostgreSQL or seriously considering it.</p>
+
+<p>It helps, of course, that PostgreSQL is a mature, well-tested database platform with excellent geospatial support through <a href="https://postgis.net/">PostGIS</a>.</p>
+
+<h2>Web Application Server</h2>
+
+<p>Python and JavaScript were the two main candidates here, as both were supported by Cloud Services and familiar to BDIT.  I decided on JavaScript, as I have more experience with node.js-based webapps.  (This is a reasonable rule of thumb: all else being equal, use what you&rsquo;re most familiar with!)</p>
+
+<p>From there, it was a matter of picking a node.js-based web framework.  <a href="https://expressjs.com/">express</a> used to be the default choice here, but development has slowed recently to the point where its future is uncertain.  I ultimately settled on <a href="https://hapijs.com/">hapi</a>, initially developed by Walmart Labs to handle Black Friday traffic.  It&rsquo;s popular, the community is active, there&rsquo;s decent documentation, it supports <code>async</code> route handling, and it comes with <a href="https://github.com/code-for-canada/bdit-webapp-template/blob/master/server.js#L16">out-of-box security header support</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// other stuff...</span>
+</span><span class='line'>  <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">security</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">hsts</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">maxAge</span><span class="o">:</span> <span class="mi">2592000</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">includeSubdomains</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">preload</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nx">xframe</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">xss</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">noOpen</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">noSniff</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">referrer</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Web Frontend</h2>
+
+<p>Reactive component frameworks like <a href="https://reactjs.org/">React</a> and <a href="https://vuejs.org/">Vue</a> take an age-old problem in webapp UI development - keeping the UI in sync with changing state - and they solve it well.  They can be overkill for smaller projects, but the modularity they enforce makes it much easier to manage larger webapp projects.</p>
+
+<p>I chose Vue here: I&rsquo;m more familiar with it than with React, and I prefer its clear separation of HTML, JS, and CSS code.  (See the above rule of thumb.)</p>
+
+<h2>Static Resources Toolchain</h2>
+
+<p>This is usually the most confusing part for new webapp developers: transpiling, minifying, bundling, preprocessing, and so on.  Where to start?  Which tools to pick?  How to configure them?</p>
+
+<p>At the same time, these tools are all valuable, as they enable the use of modern HTML, JS, and CSS features while maintaining cross-browser support:</p>
+
+<ul>
+<li><a href="https://github.com/browserslist/browserslist">browserslist</a> defines supported browsers;</li>
+<li><a href="https://postcss.org/">PostCSS</a> plus <a href="https://github.com/postcss/postcss-nested">postcss-nested</a> preprocesses CSS, allowing you to use modern CSS features while maintaining compatibility with browsers defined in <code>browserslist</code>;</li>
+<li><a href="https://babeljs.io/">Babel</a> does for JavaScript what <code>postcss</code> does for CSS, allowing you to use ES6+ features while maintaining browser support;</li>
+<li><a href="https://webpack.js.org/">webpack</a> bundles static resources and helps with production tasks like minification;</li>
+<li><a href="https://webpack.js.org/guides/development/">webpack-dev-server</a> offers hot-reloading in development, so you can instantly see changes to frontend code upon save.</li>
+</ul>
+
+
+<p>See our <a href="https://github.com/code-for-canada/bdit-webapp-template">Vue webapp template</a> for more details on configuration here.</p>
+
+<h1>Source Control</h1>
+
+<blockquote><p>It is easy to shoot your foot off with git,<br/>but also easy to revert to a previous foot and merge it with your current leg.</p><footer><strong>Jack William Bell</strong> <cite><a href='https://perl.plover.com/classes/git/samples/slide034.html'>Linus Torvalds' Greatest Invention</a></cite></footer></blockquote>
+
+
+<p>Every development project should start with source control.  In our case, the Big Data Innovation Team uses both private and public repos on Github.  Our project is internal-only, so I made a private repo on Github.</p>
+
+<p>Our <a href="https://github.com/code-for-canada/bdit-webapp-template">Vue webapp template</a> is based on that private repo, but with anything specific to the City environment (IP addresses, other credentials) removed.</p>
+
+<h1>Sample Application</h1>
+
+<p>Once I had the tech stack picked, I built a sample application that exercised every part of this stack.<br/>
+For source code, head over to <a href="https://github.com/code-for-canada/bdit-webapp-template">bdit-webapp-template</a>.</p>
+
+<p>There&rsquo;s a login form tied to <a href="https://github.com/hapijs/hapi-auth-cookie">hapi-auth-cookie</a>:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/sample-login.png" title="Sample Application Login Page" alt="Sample Application Login" /></p>
+
+<p>For now, the username and password are hardcoded in <code>lib/config.js</code>.  This file is explicitly <code>.gitignore</code>&rsquo;d to prevent leaking credentials through source control.</p>
+
+<p>After you log in, you&rsquo;re greeted with this homepage:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/sample-home.png" title="Sample Application Home Page" alt="Sample Application Homepage" /></p>
+
+<p>There&rsquo;s a logout feature, to test that we can clear our authentication cookie properly.  Login and logout are handled by <code>POST /login</code> and <code>POST /logout</code> respectively in our <code>hapi</code>-based REST API server.</p>
+
+<p>Clicking on &ldquo;About&rdquo; brings you to the truly dynamic part:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/sample-about.png" title="Sample Application Dynamic About Page" alt="Sample Application Dynamic" /></p>
+
+<p>This is where the database and REST API server come in!  There&rsquo;s a single table <code>"TEST"."COUNTER"</code> with a single row:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">psql</span><span class="o">&gt;</span> <span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="s2">&quot;TEST&quot;</span><span class="p">.</span><span class="s2">&quot;COUNTER&quot;</span><span class="p">;</span>
+</span><span class='line'> <span class="nx">n</span>
+</span><span class='line'><span class="o">---</span>
+</span><span class='line'> <span class="mi">0</span>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span> <span class="nx">row</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our <a href="https://github.com/code-for-canada/bdit-webapp-template/blob/master/server.js">REST API server</a> offers three counter-related endpoints:</p>
+
+<ul>
+<li><code>GET /counter</code> gets the current value of the counter;</li>
+<li><code>PUT /counter</code> adds 1 to the counter;</li>
+<li><code>DELETE /counter</code> resets the counter to 0.</li>
+</ul>
+
+
+<p>When the &ldquo;About&rdquo; page is loaded, we make a request to <code>GET /counter</code> to initialize the counter state in our frontend.  &ldquo;Increment&rdquo; makes a request to <code>PUT /counter</code>, &ldquo;Reset&rdquo; makes a request to <code>DELETE /counter</code>.</p>
+
+<p>In development, frontend static resources are served from <code>webpack-dev-server</code>, which proxies requests from <code>https://localhost:8080/flashcrow/api/(.*)</code> to our REST API server at <code>https://localhost:8081/$1</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// vue.config.js</span>
+</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">publicPath</span><span class="o">:</span> <span class="s1">&#39;/flashcrow/&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">https</span><span class="o">:</span> <span class="p">{</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">cert</span> <span class="p">},</span>
+</span><span class='line'>    <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="s1">&#39;/flashcrow/api&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://localhost:8081/&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">pathRewrite</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="s1">&#39;^/flashcrow/api&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We serve the application at <code>/flashcrow</code>, mainly so that we have the flexibility to run other applications on the same machine if needed for the project.</p>
+
+<p>For production, <code>npm run build</code> writes static resources to <code>dist</code>.  To serve those alongside our REST API server from a single port, I brought in <a href="https://www.nginx.com/">nginx</a> as a front-end proxy:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">location</span> <span class="o">/</span><span class="nx">flashcrow</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alias</span> <span class="o">/</span><span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">dist</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">location</span> <span class="o">/</span><span class="nx">flashcrow</span><span class="o">/</span><span class="nx">api</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">rewrite</span> <span class="o">/</span><span class="nx">flashcrow</span><span class="o">/</span><span class="nx">api</span><span class="o">/</span><span class="p">(.</span><span class="o">*</span><span class="p">)</span> <span class="o">/</span><span class="nx">$1</span> <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">proxy_pass</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//localhost:8081;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The combination of <code>rewrite</code> and <code>proxy_pass</code> here achieves much the same thing as <code>devServer.proxy</code> above.</p>
+
+<h1>Testing Infrastructure</h1>
+
+<p>With a sample application up and running, it was time to focus on making sure we could test everything.</p>
+
+<p>During the Vue CLI project initialization, I also set up <a href="https://jestjs.io/">Jest</a> for unit testing and <a href="https://www.cypress.io/">Cypress</a> for end-to-end browser testing.  <code>@vue/cli-plugin-unit-jest</code> sadly isn&rsquo;t compatible out-of-box with <code>@babel/core</code> yet, but you can follow <a href="https://github.com/vuejs/vue-cli/issues/1584#issuecomment-460786298">these instructions</a> to get it working.</p>
+
+<p>For Cypress, I ran into a <a href="https://github.com/cypress-io/cypress/issues/733">well-known issue</a> with installing Cypress binaries behind a corporate proxy.  To fix this, I had to <a href="https://docs.cypress.io/guides/getting-started/installing-cypress.html#Direct-download">download the binaries manually</a>, then move them into the appropriate Cypress cache directory; this causes the post-install script to skip downloading.</p>
+
+<h2>Component Testing</h2>
+
+<p>With <a href="https://vue-test-utils.vuejs.org/">@vue/test-utils</a>, we can mount components within Jest suites:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kr">import</span> <span class="p">{</span> <span class="nx">shallowMount</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@vue/test-utils&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">import</span> <span class="nx">Home</span> <span class="nx">from</span> <span class="s1">&#39;@/views/Home.vue&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;Home.vue renders properly&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">shallowMount</span><span class="p">(</span><span class="nx">Home</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">propsData</span><span class="o">:</span> <span class="p">{</span> <span class="p">},</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can do plenty more with <code>@vue/test-utils</code>: issue mouse / keyboard events to specific elements within the component, test lifecycle methods, and so on.</p>
+
+<h2>Database Testing</h2>
+
+<p><code>CounterDAO</code> is our <a href="https://en.wikipedia.org/wiki/Data_access_object">data access object</a> for handling counter fetches and updates in the sample application.  To test it, we can just <code>import CounterDAO</code> from a Jest suite like any other library:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kr">import</span> <span class="nx">db</span> <span class="nx">from</span> <span class="s1">&#39;@/../lib/db/db&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">import</span> <span class="nx">CounterDAO</span> <span class="nx">from</span> <span class="s1">&#39;@/../lib/db/CounterDAO&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;CounterDAO works properly&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">CounterDAO</span><span class="p">.</span><span class="nx">reset</span><span class="p">()).</span><span class="nx">resolves</span><span class="p">.</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">CounterDAO</span><span class="p">.</span><span class="nx">get</span><span class="p">()).</span><span class="nx">resolves</span><span class="p">.</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">CounterDAO</span><span class="p">.</span><span class="nx">increment</span><span class="p">()).</span><span class="nx">resolves</span><span class="p">.</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">CounterDAO</span><span class="p">.</span><span class="nx">get</span><span class="p">()).</span><span class="nx">resolves</span><span class="p">.</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">CounterDAO</span><span class="p">.</span><span class="nx">increment</span><span class="p">()).</span><span class="nx">resolves</span><span class="p">.</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">CounterDAO</span><span class="p">.</span><span class="nx">get</span><span class="p">()).</span><span class="nx">resolves</span><span class="p">.</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">CounterDAO</span><span class="p">.</span><span class="nx">increment</span><span class="p">()).</span><span class="nx">resolves</span><span class="p">.</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">CounterDAO</span><span class="p">.</span><span class="nx">get</span><span class="p">()).</span><span class="nx">resolves</span><span class="p">.</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">afterAll</span><span class="p">(</span><span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">db</span><span class="p">.</span><span class="nx">$pool</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note the call to <a href="https://github.com/vitaly-t/pg-promise">pg-promise</a>&rsquo;s <code>db.$pool.end()</code> at the end: without this, the event loop hangs forever, and the test eventually times out!</p>
+
+<h2>REST API Testing</h2>
+
+<p>And our REST API layer, which we can also test in a Jest suite using <a href="https://github.com/request/request-promise-native">request-promise-native</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;counters work&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">fcLogin</span><span class="p">();</span>
+</span><span class='line'>  <span class="kd">let</span> <span class="nx">response</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fcApi</span><span class="p">(</span><span class="s1">&#39;/counter&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;DELETE&#39;</span> <span class="p">});</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">counter</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fcApi</span><span class="p">(</span><span class="s1">&#39;/counter&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">counter</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fcApi</span><span class="p">(</span><span class="s1">&#39;/counter&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;PUT&#39;</span> <span class="p">});</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">counter</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fcApi</span><span class="p">(</span><span class="s1">&#39;/counter&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">counter</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">await</span> <span class="nx">fcApi</span><span class="p">(</span><span class="s1">&#39;/counter&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;PUT&#39;</span> <span class="p">});</span>
+</span><span class='line'>  <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fcApi</span><span class="p">(</span><span class="s1">&#39;/counter&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;PUT&#39;</span> <span class="p">});</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">counter</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fcApi</span><span class="p">(</span><span class="s1">&#39;/counter&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">counter</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is set up to run against <code>https://localhost:8080</code>, which means running <code>webpack-dev-server</code> and <code>node server.js</code> in development.</p>
+
+<h2>End-to-End UI Testing</h2>
+
+<p>Finally, we have end-to-end UI tests in Cypress:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span> <span class="nx">clear</span>
+</span><span class='line'><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Counter Test&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">before</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>  <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">Cypress</span><span class="p">.</span><span class="nx">Cookies</span><span class="p">.</span><span class="nx">preserveOnce</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">visit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;a#link_about&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;Reset counter&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;button#btn_reset&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;span#info_counter&#39;</span><span class="p">,</span> <span class="s1">&#39;Counter: 0&#39;</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="s1">&#39;not.be.null&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;Increment counter&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;button#btn_reset&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;button#btn_increment&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;span#info_counter&#39;</span><span class="p">,</span> <span class="s1">&#39;Counter: 1&#39;</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="s1">&#39;not.be.null&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;button#btn_increment&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">cy</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;span#info_counter&#39;</span><span class="p">,</span> <span class="s1">&#39;Counter: 2&#39;</span><span class="p">).</span><span class="nx">should</span><span class="p">(</span><span class="s1">&#39;not.be.null&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fantastic!  We can test our application from top to bottom, right out of the gate.</p>
+
+<h1>Code Style</h1>
+
+<blockquote><p>Always code as if the guy who ends up maintaining your code will be a<br/>violent psychopath who knows where you live.  Code for readability.</p><footer><strong>John F. Woods</strong> <cite><a href='https://groups.google.com/forum/#!msg/comp.lang.c++/rYCO5yn4lXw/oITtSkZOtoUJ'>comp.lang.c++</a></cite></footer></blockquote>
+
+
+<p>The Code for Canada fellowship is 10 short months: 4 down, 6 to go.  I might be the only developer on this project right now, but what about after I&rsquo;m gone?  What if we get another developer on the team mid-fellowship?  (This isn&rsquo;t purely hypothetical: BDIT mentioned we might be able to get 1-2 more devs.)  Professional software development means writing code others can read and modify.</p>
+
+<p>A big part of that is <em>code style</em>, a set of rules that describe what readable code means in your organization.  To help set that up, Vue CLI comes with <a href="https://www.npmjs.com/package/lint-staged">lint-staged</a> and <a href="https://www.npmjs.com/package/@vue/cli-plugin-eslint">@vue/cli-plugin-eslint</a>, with <a href="https://www.npmjs.com/package/@vue/eslint-config-airbnb">@vue/eslint-config-airbnb</a> installed to use <a href="https://github.com/airbnb/javascript">AirBnB&rsquo;s excellent JavaScript style guide</a> by default.</p>
+
+<p>I added <a href="https://www.pylint.org/">pylint</a> for Python, <a href="https://github.com/PowerShell/PSScriptAnalyzer">PSScriptAnalyzer</a> for PowerShell scripts, and <a href="https://www.shellcheck.net/">shellcheck</a> for Bash scripts.  This was also a good point to integrate unit testing into our pre-commit hook:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;test:unit&quot;</span><span class="p">:</span> <span class="s2">&quot;jest --changedSince=master&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;pre-commit:lint&quot;</span><span class="p">:</span> <span class="s2">&quot;lint-staged&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;pre-commit:audit&quot;</span><span class="p">:</span> <span class="s2">&quot;npm audit&quot;</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;gitHooks&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;pre-commit&quot;</span><span class="p">:</span> <span class="s2">&quot;npm-run-all pre-commit:* test:unit&quot;</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;lint-staged&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;*.js&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s2">&quot;vue-cli-service lint&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;git add&quot;</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>    <span class="nt">&quot;*.vue&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s2">&quot;vue-cli-service lint&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;git add&quot;</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>    <span class="nt">&quot;*.py&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s2">&quot;pylint&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;git add&quot;</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>    <span class="nt">&quot;*.ps1&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s2">&quot;python ./scripts/dev/ps1_linter.py&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;git add&quot;</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>    <span class="nt">&quot;*.sh&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s2">&quot;shellcheck --shell=bash&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;git add&quot;</span>
+</span><span class='line'>    <span class="p">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that I&rsquo;ve also added <a href="https://docs.npmjs.com/cli/audit">npm audit</a>, which flags npm packages in your project with known vulnerabilities.  Solid pre-commit hooks are an essential part of maintaining code readability, quality, and security!</p>
+
+<h1>Last Thoughts</h1>
+
+<p>Phew!  It sounds like a lot of work, but some technical due diligence up front saves loads of effort later.  It&rsquo;s always easier to integrate best practices like end-to-end testing, pre-commit hooks, etc. into a fresh project than it is to shoehorn them into an existing legacy codebase.  If you have the chance, why not do it when it&rsquo;s easy?  Your future team will thank you.</p>
+
+<p>I&rsquo;ve also been busy setting up a replication pipeline between Oracle and PostgreSQL, which I might explain in a future blog post (time permitting).  We&rsquo;ll soon be starting in on development, so look forward to more technical deep-dives!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Limitations of Real]]></title>
+    <link href="https://blog.savageinter.net/blog/2017/07/09/the-limitations-of-real/"/>
+    <updated>2017-07-09T15:40:02-04:00</updated>
+    <id>https://blog.savageinter.net/blog/2017/07/09/the-limitations-of-real</id>
+    <content type="html"><![CDATA[<p>This is the first in a series of posts where we explore the <em>mechanical</em>, <em>narrative</em>, <em>logistical</em>, and <em>personal</em> limitations of real-world gameplay.  In this post, we&rsquo;ll give a quick overview of the topic.</p>
+
+<h2>Real-World Games</h2>
+
+<p>Here at <a href="https://savageinter.net/">Savage Internet</a>, we love real-world games.  In fact, our current main project, <a href="https://puzzlingmadness.ca/">The Puzzling Madness of John A. Macdonald</a>, is a blend of escape room and historical tour.  Our previous project, <a href="https://blog.savageinter.net/blog/2017/05/15/zombies/">Zombie Rendezvous</a>, was based around <a href="https://drive.google.com/file/d/0B0jF681JP2rJcnJySEhudktxenM/view">paper booklets</a> and in-person interactions.</p>
+
+<p>As game designers, we find we learn just as much, if not more, from LARPs, pen-and-paper RPGs, board games, sports, card / dice games, and other real-world games as we do from video games.  If you think about it, that&rsquo;s not really surprising: there&rsquo;s a richer history behind real-world games.  Games have been part of our lives <a href="https://www.harappa.com/blog/ancient-indus-dice">for thousands of years</a>, while the <a href="https://www.aps.org/publications/apsnews/200810/physicshistory.cfm">first video game</a> wasn&rsquo;t invented until the mid-20<sup>th</sup> century.</p>
+
+<h2>Why Limitations?</h2>
+
+<p>If we love real-world games so much, why devote so much time to talking about their limitations?  First off, it&rsquo;s well-documented that the right kind of constraints <a href="https://hbr.org/2013/01/how-intelligent-constraints-dr">can drive creativity</a>.  Clear, well-understood constraints are particularly useful here.</p>
+
+<p>Aside from that, knowing the limitations at hand helps to focus efforts on workable designs.  For instance: a design that has people walking around for 12 hours straight is likely flawed, as is one that relies on people being in two places at once.  It also helps suggest areas where the right technology or tools can help make the impossible possible.  Maybe the 12-hour game can be broken into stages, with progress tracked via a simple website that players sign up on.  If players need to be in two places at once, maybe you can split their role among team members, and let them coordinate over SMS.  (These aren&rsquo;t the easiest solutions here, of course: you can often get by with carefully removing / editing content.)</p>
+
+<p>Finally, there&rsquo;s a bit of selfish exposition here.  Our team has a lot of experience building technical things: software applications and libraries, hardware prototypes, etc.  Our released games thus far, on the other hand, have been largely low-tech and in-person - so you can think of this series as a sort of braindump of what we&rsquo;ve learned, often the hard way by sweat and trial-and-error and all that character-building stuff.</p>
+
+<h2>The Types of Limitations</h2>
+
+<p><em>Mechanical</em> limitations are upper bounds on the complexity of a game&rsquo;s rules, system, and setup.  In video games, the computer handles much of the complexity for the players.  Real-world game players, by comparison, must often remember and apply the rules themselves.  This includes keeping track of their specific role, abilities, equipment, inventory, etc. where applicable.  It also means being aware of special rules or exceptions, which are often introduced to maintain game balance.  In more complicated games, that can be a lot to manage!  There are, however, ways of dealing with this complexity, as we&rsquo;ll discuss in Part 1.</p>
+
+<p><em>Narrative</em> limitations are similar to <em>mechanical</em> limitations, but for story complexity.  Some LARP systems come with an expansive backstory, involving warring kingdoms and deities and such, that can quickly overwhelm new players unless they receive a more gradual introduction to the game world.  Of course, <em>narrative</em> limitations exist in all storytelling media - a story has to make sense, for starters, and it helps if it&rsquo;s compelling, consistent, etc.  However, any game that asks its players to internalize and apply aspects of the game world - enmity between fictional races, the state of diplomatic relations, knowledge of fantastical devices - faces an additional difficulty in narrative design.  Moreover, the narrative often has to be made manifest in the game through rules, props, costumes, NPC interactions, etc., and this is more difficult to do convincingly if your narrative is overly complicated.  Finally, games have the unique problem of branching narratives.  A negotiation might succeed or fail, a time limit might be met or missed - and all options have to lead to compelling storylines.  We&rsquo;ll look at <em>narrative</em> limitations in Part 2.</p>
+
+<p><em>Logistical</em> limitations are more for organizers: the more complicated a game design, the more likely it is that something will go wrong.  An early version of <a href="https://puzzlingmadness.ca/">Puzzling Madness</a> had a mini-game where players donned blindfolds, then ran around picking up letter tiles hidden around a park.  We thought it was really cool, and it was - as an idea.  When we tried it out, we quickly hit snags.  You can&rsquo;t just leave letter tiles in a park and expect them to stay there, so we&rsquo;d have to lay them out at the beginning of the mini-game.  This meant one of us had to put the blindfolds on people while the other ran around placing tiles, which in turn meant the players had to be kept entertained while the mini-game was being set up.  Eventually, we scrapped the mini-game altogether, mostly to save ourselves the hassle of running it.  We&rsquo;ll talk more about that experience, and about tools for helping manage <em>logistical</em> limitations, in Part 3.</p>
+
+<p><em>Personal</em> limitations are physical and mental limitations of the human body.  Players need to eat, drink, breathe, sleep, and use the bathroom.  When players place their trust in a game designer, however, they usually expect more than simply basic survival.  They might expect that game tasks won&rsquo;t be overly dangerous, intimidating, demeaning, or uncomfortable.  Part of this is knowing who your game is for: Tough Mudder enthusiasts and cribbage players will have very different thresholds.  There&rsquo;s a lot of individual variance within these groups as well: one player might love blindfold mini-games, while another might be extremely apprehensive about them.  Our series will end with a look at <em>personal</em> limitations in Part 4.</p>
+
+<h2>Next Up</h2>
+
+<p>Keep posted for the next installment, &ldquo;The Limitations of Real: Mechanical&rdquo;!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Playtesting #Canada150]]></title>
+    <link href="https://blog.savageinter.net/blog/2017/07/01/canada-150/"/>
+    <updated>2017-07-01T11:43:51-04:00</updated>
+    <id>https://blog.savageinter.net/blog/2017/07/01/canada-150</id>
+    <content type="html"><![CDATA[<p>We&rsquo;ve been hard at work on <a href="https://puzzlingmadness.ca">The Puzzling Madness of John A. Macdonald</a> for the last several months. This game is a blend of escape room and historical tour: it leads players to physically walk across downtown Toronto as they solve puzzles, examine historical buildings, and meet 19th-century Canadians. Ultimately, players unravel a mystery that is threatening Confederation itself!</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/pm-header.jpg" title="Evan as one of our historical characters, next to Maki as a player" alt="Header for Puzzling Madness" /></p>
+
+<p>This project came about when we were having brunch with a friend of ours, <a href="http://hillarypredko.com/">Hillary Predko</a>, back at the very beginning of our time in Toronto. She mentioned that, since 2017 is Canada&rsquo;s sesquicentennial, there is lots of funding available for Canada150-themed projects. After lunch, we sat down to brainstorm, and decided that we could make something really cool for Canada&rsquo;s Big Year.</p>
+
+<p>Thus, Puzzling Madness was born. We&rsquo;ve been working on it on and off since November, but really put our noses to the grindstone around March. So far we have done 3 playtests, working out kinks in the system and puzzles. That&rsquo;s the process I&rsquo;m excited to write about today!</p>
+
+<p>One of the very most important topics for running playtests like these is reassuring your players that it isn&rsquo;t <em>them</em> that you are testing: it&rsquo;s your game. You have to keep your players happy and engaged, and if they are frustrated at puzzles it&rsquo;s critical that they know it&rsquo;s your shortcoming and not theirs. For escape room-type games, where not everyone is supposed to succeed, this leads to an interesting conundrum: you want some of your testers to get through the puzzles, but not everyone, so you are testing for &ldquo;average&rdquo; ability at the same time you test for the challenge level of your puzzles.</p>
+
+<p>Another key point is to know what you&rsquo;re testing for each time you run a test, as this will inform extra equipment you need to bring or extra information you need to record as you go. Do you want to get timings down? Make sure you bring a watch. Do you want to see how tricky a particular puzzle is? Interview participants as they think through it. Are you focusing on characterization or storytelling? Be certain you have questions in your questionnaire dealing with that, and collect images of player reactions to &ldquo;cutscenes&rdquo; or other character interactions.</p>
+
+<h2>Playtest 1: Length</h2>
+
+<p><img src="https://blog.savageinter.net/images/posts/pm-pt1.jpg" title="The 8 playtesters who joined us for our first playtest in March, standing in front of a historical site" alt="Playtest 1 for Puzzling Madness" /></p>
+
+<p>Our first playtest, way back in March, was on an unfortunately drizzly and cold day. We had 8 players out: the very first people to see any of our puzzles or storyline. Things immediately started going wrong, but ultimately everyone had fun. We spent about 5 hours with our team before calling it a day.</p>
+
+<h3>Visual Confirmation</h3>
+
+<p>First off, for one of our puzzles we had players find historical plaques marked on a map. The information we used to construct the map came from an enormously helpful and awesome website: <a href="http://torontoplaques.com">the Toronto Plaque Map</a>. Unfortunately, we didn&rsquo;t actually verify a couple of the plaque locations physically, which meant that two things happened: 1) one plaque was no longer visible due to some construction around the area, and 2) we had some transcription errors in putting the plaques on our map.</p>
+
+<h3>Weather-dependent</h3>
+
+<p>In this playtest, players wound up taking several breaks to go inside in order to solve puzzles. This pointed to a few shortcomings in the game: first off, if it&rsquo;s possible to solve the puzzles while indoors at a table, then they aren&rsquo;t very well tied to the physical historical locations. Second off, it drove home the point that an outdoor puzzle game really is weather-dependent. We&rsquo;re crossing our fingers for a warm, sunny day.</p>
+
+<h3>Puzzle challenge and target market</h3>
+
+<p>We are big puzzlers. We have played in puzzle hunts, done escape rooms, and even designed puzzle games for each other for our birthdays (see <a href="https://drive.google.com/drive/folders/0B015tvjlD7Dmc0VqOGpyUmZhSkU?usp=sharing">Doc Savage: Woman of Bronze</a>, for example). That said, we made some of our puzzles in the original version of the game&hellip; a little too sadistic. This led to a serious conversation about the kinds of people we are hoping to have play the game, whether they are serious puzzle people who know nothing of history, people curious about history who enjoy light puzzling, people who are history buffs and don&rsquo;t know anything about history, or some other group entirely. At this time, we decided to split our game into two &ldquo;modes&rdquo;: Puzzle Mode that will cater to hardcore puzzle solvers, and &ldquo;Story Mode&rdquo; that will focus on delivering an interesting historical story for people less interested in puzzles.</p>
+
+<h3>We have to go&hellip; where??</h3>
+
+<p>Our initial design for the game had players begin at Union Station, walk out to the St. Lawrence Market, walk back through old town Toronto, head north through mid-town and visit the YWCA among other places, and finally wind up with a series of puzzles across the University of Toronto&rsquo;s campus. Looking at a map, we could see that this amount of walking should take ~45 minutes on its own, and we figured for a 3 hour experience giving players 2h15min to solve puzzles (we had 30 in total in this version) would be <em>plenty</em>. Ha. Ha ha. Well, that one&rsquo;s on us. Of course, between bugs in the puzzles and the enormous distances to cover, our players only managed to get through about &frac14; of the material we&rsquo;d written. When we decided to call it a day, we debriefed everybody on what was &ldquo;supposed to&rdquo; happen.</p>
+
+<h3>Ultimately</h3>
+
+<p>Ultimately this test was successful in that we learned a lot from it, although we felt bad about having given a pretty sucky game experience to our players. We tried to justify this by reminding ourselves that we did buy them lunch and dinner. :) We improved our playtest procedures for the following test, in addition to significantly overhauling the game itself.</p>
+
+<h2>Playtest 2: Puzzle Mode</h2>
+
+<p><img src="https://blog.savageinter.net/images/posts/pm-pt2.jpg" title="Some of the playtesters who joined us for our second playtest, solving a tricky puzzle" alt="Playtest 2 for Puzzling Madness" /></p>
+
+<p>After our first playtest with a group of what we determined would become &ldquo;story mode&rdquo;, we were eager to do a test with a group of &ldquo;puzzle mode&rdquo; playtesters. We managed to recruit a full team of testers who all worked together, and who had completed several escape room games together. One of the group members had also done puzzle hunts in the past. The day we ran the playtest was a little cool, but fortunately dry!</p>
+
+<h3>Puzzles and challenge</h3>
+
+<p>These players <em>loved</em> our puzzles. Several of the re-done puzzles in this version required leaps of logic, and there were a few pretty unusual puzzle mechanics that nobody in the group had seen before. They enjoyed exploring the city, and everyone said that they had visited or noticed something new in the process of going through the game.</p>
+
+<h3>Teamwork</h3>
+
+<p>One thing we did notice during the playthrough, though, was that the one player who had previously done a lot of puzzle games was &ldquo;carrying the team&rdquo;, in the sense that he was given control of the map and puzzle booklet, and was heavily involved in solving all of the puzzles. One mechanic we had designed to combat this was that each player takes on a character: they are a historical person with particular knowledge that applies to one or two puzzles in the game. In this way, we hoped to give everyone a chance to shine over the course of the experience. In practice, what happened was that most players gave their clue sheets to one person, who then effectively ran the show.</p>
+
+<p>Another issue for teamwork was that we only printed a few of the puzzle booklets, so not enough copies of information were available for all players to be active on a puzzle at the same time. For the next test, we determined to print enough copies that each person could have all the information necessary.</p>
+
+<h3>Story</h3>
+
+<p>While the first group simply didn&rsquo;t have enough time to experience the story, the second group had no interest in it. They were fixated on the puzzles (as they should have been, since they were the puzzle mode group!), and there was no mechanic that forced them to interact with the non-player characters that we had built into the game. The next iteration would see required interaction preceding each puzzle.</p>
+
+<h3>Ultimately</h3>
+
+<p>This test made us realize that separating puzzle mode and story mode, while attractive in the sense that it meant we could use more of the material we had already generated, wasn&rsquo;t, in fact, feasible for this game. Maintaining two totally different sets of puzzles, keeping track of minor differences in actor scripts, and all the other bookkeeping that goes along with doing two things when you should just be doing one turned out to be a little overwhelming for a 2-person team.</p>
+
+<h2>Playtest 3: The End!</h2>
+
+<p><img src="https://blog.savageinter.net/images/posts/pm-pt3.jpg" title="Some of our playtesters for test #3, working their way through a blindfold activity we have since scrapped" alt="Playtest 3 for Puzzling Madness" /></p>
+
+<p>Our major goal for this playtest was to get players to the big finale we had planned at all costs, since our original plan was to launch the full game a couple weeks after the test and none of our groups had yet made it that far. We planned to give hints, liberally if necessary, to ensure that this would happen.</p>
+
+<h3>Papers, please</h3>
+
+<p>Having learned from our last test, we gave everyone a copy of everything for this playtest. There was no longer secret information for each player, and there were enough copies of each sheet that everyone could collaborate on every puzzle. Or, at least, that was what we expected. What happened was that players got overwhelmed with the sheer amount of paper they had to carry, and had challenges in organizing it. Many of the hints we gave were of the form, &ldquo;you have other information&rdquo;, just to remind players that we had given them a clue sheet back at the beginning of the game. We are still working out what the &ldquo;magic&rdquo; amount of information is going to be for the game to come off smoothly.</p>
+
+<h3>Weather strikes again</h3>
+
+<p>With all the paper we were handing out, it seems like a cosmic joke that the day was also off-and-on rainy. Everything was soaked at the end of the day, and players had to find shelter under a variety of overhangs in order to even use the papers we had given them. Since we had no lamination or other waterproofing, the pencils we&rsquo;d handed out also failed to work on the wet paper. Lesson learned: for the next playtest we&rsquo;ll be using grease pencils and laminated sheets.</p>
+
+<h3>Group size</h3>
+
+<p>We had a fairly small group for this test: just 5 people. This gave them a lot of time to interact with each other and build up a rapport for puzzle solving, and also meant that all of them were busy most of the time: there simply wasn&rsquo;t an opportunity for one person to sit idle. However, since we&rsquo;re targeting groups of 12 in the final game, this gave us some pause. Even a group of 5 was able to get through the game to the finished in the amount of time we&rsquo;d allotted, which meant that we needed to step our puzzle game up a little to keep it interesting for a larger group. In our next test run, we&rsquo;ll be trying out parallel puzzles at each location: half the group can work on one puzzle, while half works on another, and the two parts will pop out the solution for that location.</p>
+
+<h3>Blindfolds aren&rsquo;t for everyone</h3>
+
+<p>Every group we have tested with so far has completed a blindfolded activity that we designed. We really wanted this to be a part of the game (for story reasons), but it turned out to be too fiddly to set up, to take too long, and to be frightening for some players. Since we are expecting that some groups will be composed of people who don&rsquo;t know each other yet, we don&rsquo;t want to make them uncomfortable. After tweaking the rules of this activity for every group that we tested with, we finally decided to scrap it.</p>
+
+<h3>Ultimately</h3>
+
+<p>This was our most successful playtest yet, which is a good thing since generally you want to be improving each time you put something in front of people. :) We are basically at the length that we are targeting, people had fun, the puzzles weren&rsquo;t too hard, and the story went smoothly. The few tweaks we are making for the next test are pretty doable, and we&rsquo;re excited about it!</p>
+
+<h2>Next up</h2>
+
+<p>We&rsquo;ll be running a couple of playtests in July before we finally have our launch day on August 19th. The July 15th group is already full, but if you can join us <a href="https://docs.google.com/forms/d/e/1FAIpQLSew-nLvEqMnZ36ZBptAAv86DW5LVxcXRdaD8aYtF3B_WR6Xew/viewform?usp=sf_link#responses">on July 30th</a>, we&rsquo;d love to have you!</p>
+
+<p>We&rsquo;re also putting together a trailer video that you&rsquo;ll be able to share with your friends. We&rsquo;ll definitely share that on here once it&rsquo;s ready.</p>
+
+<p>The playtesting thus far has been hard but rewarding. It&rsquo;s a bit of a bummer to lose your weekends for a month to work, but we&rsquo;re looking forward to the payoff.</p>
+
+<p>Happy Canada Day!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zombies!]]></title>
+    <link href="https://blog.savageinter.net/blog/2017/05/15/zombies/"/>
+    <updated>2017-05-15T12:05:26-04:00</updated>
+    <id>https://blog.savageinter.net/blog/2017/05/15/zombies</id>
+    <content type="html"><![CDATA[<p>Between volunteering at <a href="http://www.torontocomics.com/">TCAF</a> and with the <a href="http://handeyesociety.com/">Hand Eye Society</a> and visiting with a friend passing through town, we spent some time this weekend at Ryerson&rsquo;s <a href="http://www.ryerson.ca/sciencerendezvous/">Science Rendezvous</a>, an annual science fair and festival taking place across Toronto, playing with the <em>science of zombies</em>.</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/booklet.jpg" title="the booklet we developed for Zombie Rendezvous" alt="Zombie Rendezvous Booklet" /></p>
+
+<p>A couple months ago, we heard that two members of <a href="https://www.scicommto.com/">SciCommTO</a>, Toronto&rsquo;s meetup for science communicators, were working on a <a href="https://boardgamegeek.com/boardgame/30549/pandemic">Pandemic</a>-style board game showcasing a zombie infection on Prince Edward Island. They had used the game to teach the basic principles of disease transmission, as well as emphasize the differences in infections caused by fungi, viruses, and bacteria.</p>
+
+<p>Now, they wanted to bring the game and information to a wider audience. We met up with <a href="http://www.glse.utoronto.ca/amanda-veri-molecular-genetics">Amanda Veri</a> and <a href="https://ontariomolecularpathology.ca/content/elliann-fairbairn">Elliann Fairbairn</a> to think about how that might work. The main audience for Science Rendezvous is kids ages 4-12, which was very different from the audience their board game was designed for (high school kids and adults). The game also had to be made significantly shorter, so that it could hold the attention of a hypothetical family trying to navigate Yonge-Dundas square with science experiments and science magic shows on all sides of them. In addition, the game couldn&rsquo;t really require players to sit down to learn rules, and it had to be playable outdoors.</p>
+
+<p>This list of requirements rang a bell for us. On our <a href="https://ootscoot.savageinter.net/">recent drive across the US and Canada</a>, we were lucky enough to spend time in several National Parks and -Monuments in both countries. In the US, the National Parks Service runs a <a href="https://www.nps.gov/kids/jrrangers.cfm">junior ranger program</a> for folks visiting: you ask for a booklet at the beginning of your visit, then you carry it around the park with you and complete activities as you hike, listen, learn, and explore. We went all the way through the booklets for Devils Tower National Monument and Yellowstone National Park.</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/junior-ranger.jpg" title="Junior Ranger Booklets from Devils Tower and Yellowstone" alt="Junior Ranger Booklets from Devils Tower and Yellowstone" /></p>
+
+<p>These booklets have a range of activities, and they are built to accommodate multiple age groups within the same booklet. In general, older kids (and adults!) need to complete more activities than younger ones, and their activities are more complex. A 4-year-old might dance like a leaf, while a 12-year-old might read a few paragraphs and fill in a crossword puzzle. At all ages, junior rangers must go on a hike and listen to a ranger talk while at the park.</p>
+
+<p>We all agreed that this would be a great basis for the kind of experience we wanted to develop. The final product has a collection of activities which are completed at pre-defined stops, where volunteers keep the game moving with some hands-on activities and help participants complete the related booklet pages.</p>
+
+<h2>Characters</h2>
+
+<p>Our game has four stops: zombie, doctor, pathologist, and researcher. Players are infected, then go through the process of identifying their infection type and helping develop a cure for it.</p>
+
+<h3>Zombie</h3>
+
+<p><img src="https://blog.savageinter.net/images/posts/zombie.jpg" title="one of our zombies" alt="zombies" /></p>
+
+<p>Zombies roam around the event, searching for kids and families to &ldquo;infect&rdquo; with zombism. Each zombie has a collection of activity booklets, which are coded to let other volunteers know which kind of infection each person has. When a zombie infects a player, they note the time (players have only 30 minutes to complete the game before they turn into zombies&hellip; forever!). Players take notes about the zombie: how it infected them, how it is behaving, and what it looks like. They are then encouraged to seek out a doctor to help them figure out what is wrong.</p>
+
+<h3>Doctor</h3>
+
+<p><img src="https://blog.savageinter.net/images/posts/doctor.jpg" title="our doctor" alt="doctor" /></p>
+
+<p>The doctor helps players &ldquo;take a blood sample&rdquo; so that they can identify things that don&rsquo;t belong. In this case, players learn what a virus, bacterium, bacteriophage, and fungal spore look like: they also find out that one of these three things is causing their infection and learn more about how to prevent the spread of infections.</p>
+
+<h3>Pathologist</h3>
+
+<p><img src="https://blog.savageinter.net/images/posts/pathologist.jpg" title="our pathologist" alt="pathologist" /></p>
+
+<p>A pathologist can create a culture of disease agents. Our pathologist takes the player&rsquo;s &ldquo;blood sample&rdquo; and gives them back a culture showing what that sample would look like when grown. For this, Amanda arranged real cultures of viral, bacterial, and fungal agents, which we sealed for the protection of participants (they were common agents, like bread yeast for the fungal agent, so this was mainly precautionary and not strictly necessary). Participants then had to match their culture to example cultures to determine which kind of infection they had.</p>
+
+<h3>Researcher</h3>
+
+<p><img src="https://blog.savageinter.net/images/posts/researcher.jpg" title="our researcher" alt="researcher" /></p>
+
+<p>With all the info about their infection in the bag, players scoot over to the researcher who helps them create a cure. In order to create something effective, it is necessary that players have correctly identified their infection, since a cure for a fungal infection does not work on a viral or bacterial infection! Players learn how drugs are designed, and complete a word search for new vocabulary learned in the course of the game.</p>
+
+<h3>The end</h3>
+
+<p>Once players get their cure, they again note the time. If they have completed the game within 30 minutes, they are free! The researcher writes a big &ldquo;WIN&rdquo; in green letters, certifying that they are healthy and no longer infected with zombism. However, if not&hellip; players are now zombies! Either way, everybody gets candy.</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/zombie2.jpg" title="another of our zombies" alt="zombie number 2" /></p>
+
+<p>A final pair of pages in the book can be completed by participants after they&rsquo;ve gone home. It encourages them to think about what they would want in case of a real zombie infestation, in terms of supplies, shelter, and skills.</p>
+
+<h2>Lessons learned</h2>
+
+<p>We learned a lot over the course of the day. A few of the most important lessons were about group/family dynamics, keeping things from getting scary, pre-game organization, activity design, and &ldquo;advertising&rdquo;.</p>
+
+<h3>Group and family dynamics</h3>
+
+<p>Most of the people at Science Rendezvous showed up as families. The people who played our game ranged from 4 to 60, though most of them were under 12. Often the younger ones showed up with Mom and/or Dad, and it was important to get everyone involved in the activity, but not too much. We started to take the tactic of kneeling down to do activities with the kids, since then they were more engaged with them and it kept Mom and Dad from being tempted to do the activities for them. We also sometimes saw kids who totally split off from their parents to play the game; this was a surprise to us, but given that our locations around the square were pretty obvious, it was never a problem.</p>
+
+<h3>Keeping things from getting scary</h3>
+
+<p>During the beginning of the day, some kids got totally scared off from playing the game because our zombies were too realistic. The zombies developed a strategy: first they asked kids if they wanted to play a game, then they would act like a zombie and bite them, and then &ldquo;change back&rdquo; into a non-scary person who would help them start the activity.</p>
+
+<h3>Pre-game organization</h3>
+
+<p>Since everyone who performed today was a volunteer, we didn&rsquo;t really have a chance to train or even go over the game totally. In the first part of the day, many people &ldquo;lost&rdquo; (i.e., became zombies permanently) because we had not properly set up the pathologist&rsquo;s station beforehand. The agar plates were very challenging to correctly identify visually, and we ended up labelling them with illustrations.</p>
+
+<h3>Activity design</h3>
+
+<p>One of our activities is a word search, which we based off of the Yellowstone Junior Ranger book. It didn&rsquo;t take us long to realize that the word search takes <em>much</em> too long for our game; we originally intended to have people find from 10-20 words depending on their age, but cut it down to 3-8 words to keep their interest. The Yellowstone book, of course, was designed for kids to do as they rode in the car around Yellowstone, which they must do for hours and hours in order to see all the big sights in the park. In that case, a really long activity was a bonus rather than a problem. We didn&rsquo;t think about that when we borrowed their design, so we had to change some things on the fly.</p>
+
+<p>Another fun thing for activity design would be to have an &ldquo;accomplice package&rdquo; along with the kids' game; their parents were in general just as into it as the kids were, but perhaps we could supply some more challenging activities for them to do alongside their kids!</p>
+
+<h3>Advertising</h3>
+
+<p>Our goofy outfits made it more fun for us to run the game, in addition to making it more likely that people would walk up to us and ask what the heck we were doing. Definitely a plus in this situation!</p>
+
+<h2>Reactions</h2>
+
+<p>People of all ages and kinds were really excited about the game. We had praise from parents, educators, kids, and adults who played even without having kids. One kid even went through the game twice. A security guard working at the event walked up to one of our zombies saying, &ldquo;I heard your game is really hard&hellip; can I play?&rdquo; At the end of the event when we were packing up, we were begged by a kid who had heard about &ldquo;the zombie game&rdquo; from someone else and desperately wanted to play. Of course we humoured him.</p>
+
+<p>Overall, it was a satisfying day. While the game didn&rsquo;t take a super long time to put together, and it could still use some tweaking, it was definitely well-received. Perhaps we&rsquo;ll join the festival again next year. :)</p>
+
+<h2>Want to play?</h2>
+
+<p>Want to try out our game&mdash;even though you didn&rsquo;t make it to Science Rendezvous&mdash;, or would you like to run Zombie Rendezvous at a similar event?</p>
+
+<p><a href="https://drive.google.com/file/d/0B0jF681JP2rJcnJySEhudktxenM/view?usp=sharing">Take a look through our booklet</a>, and feel free to use it! We&rsquo;re hereby licensing it under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons CC-BY-NC-SA 4.0</a>, which allows you to reuse it for non-commercial purposes, and even make changes to it, as long as you cite us as the source and allow other people to adapt your booklet in the same way. Here&rsquo;s a <a href="https://drive.google.com/file/d/0B0jF681JP2rJaUxwZjZDaUVWbnc/view?usp=sharing">printer-friendly version of hte booklet</a>, with pages flipped for proper printing and to conserve paper.</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/group.jpg" title="all of us who worked on the game!" alt="group shot" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stardew Valley]]></title>
+    <link href="https://blog.savageinter.net/blog/2017/05/06/stardew-valley/"/>
+    <updated>2017-05-06T12:05:26-04:00</updated>
+    <id>https://blog.savageinter.net/blog/2017/05/06/stardew-valley</id>
+    <content type="html"><![CDATA[<p>Mental health is a difficult topic to handle in any medium, and for that reason it&rsquo;s rarely addressed.  So when I started playing <a href="http://stardewvalley.net/">Stardew Valley</a>, I was surprised to find that it deals openly and inclusively with mental health issues.  From depression to PTSD to alcoholism to social anxiety, you&rsquo;ll get to know characters across the whole spectrum of DSM classifications, and you&rsquo;ll have a really great time doing so.</p>
+
+<p>Aside from its willingness to break through the stigma surrounding mental health issues, Stardew Valley is also a really great game.  Of the 60 or so games that came in the <a href="https://www.humblebundle.com/freedom">Humble Freedom Bundle</a> we purchased a while back, Stardew Valley is by far the one we&rsquo;ve played the most, and I&rsquo;ll get into why it keeps drawing us back.</p>
+
+<p>But first, a screenshot from old SNES classic <a href="http://harvest-moon.wikia.com/wiki/Harvest_Moon_(SNES">Harvest Moon</a>):</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/harvest-moon.png" title="Harvest Moon Screenshot" alt="Harvest Moon Screenshot" /></p>
+
+<p>And here&rsquo;s Stardew Valley:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/stardew-valley.png" title="Stardew Valley Screenshot" alt="Stardew Valley Screenshot" /></p>
+
+<p>At first glance, Stardew Valley is Harvest Moon 2.0.  Both are farming simulation games, and they share a <em>lot</em> of the basic mechanics.  Both have you grow crops and raise animals to produce goods that are then sold to help grow the farm.  Both have similar systems of time, with hours of the day and a four-season calendar complete with festivals and NPC birthdays.  Speaking of NPCs, both allow you to befriend them by giving gifts and talking to them, and both allow you to marry NPCs that you&rsquo;ve reached a high enough level of friendship with.  Both have upgradable tools, stamina to limit how much you can do in a day, fishing, house upgrades, and so on.</p>
+
+<p>So what&rsquo;s different?  Well, there&rsquo;s the mental health thing, for starters:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/stardew-valley-shane.jpg" title="Shane Two-Heart Event" alt="Shane Two-Heart Event" /></p>
+
+<p>This interaction, which happens once you reach the two-heart friendship level with a villager named Shane, is a strikingly open discussion of depression in an otherwise cute and colourful game world.  Before you reach this level, Shane will push you away whenever you try to speak to him.  You learn gradually that Shane self-medicates with alcohol, but it doesn&rsquo;t help.  You also come to see that he has a passion for raising chickens.  It&rsquo;s a great example of how, by taking a game mechanic (friendship) and raising the stakes, you make that mechanic much more compelling.  You&rsquo;re helping these people work through their issues as you get to know them; the flip side of that, of course, is that you can <em>only</em> people whom you interact with, so failure to interact takes on a moral / ethical dimension.  It also encourages empathy for the characters: even if you wouldn&rsquo;t normally like their personality, chances are good they&rsquo;re <a href="https://www.goodreads.com/quotes/6697537-everyone-you-meet-is-fighting-a-battle-you-know-nothing">fighting a battle you know nothing about</a>.</p>
+
+<p>The same is true of the broader community, which is being eroded both by neglect and by the appearance of mega-corporation Joja in town.  Early on, you&rsquo;re presented with a choice: do you help tiny <a href="https://mythology.stackexchange.com/questions/644/what-is-the-origin-of-the-japanese-kodama">Kodama</a>-like spirits rebuild the community centre, or do you sign up for a JojaMart membership and turn that centre into a Joja warehouse?  You can, of course, make either choice, and they lead to different modes of gameplay.  The community centre path requires you to deliver various items, and encourages a more exploratory play style.  The JojaMart path instead depends on constant infusions of money, which leads to a more optimized / micro-managed play style.  Since crop seeds cost more at JojaMart, this is also cleverly balanced to double as a &ldquo;hard mode&rdquo; after you complete the game: most players will pick the altruistic community centre path their first time.</p>
+
+<p>This &ldquo;hard mode&rdquo; balancing is just one example of how Stardew Valley encourages <a href="https://elearningindustry.com/mastery-learning-grand-theft-auto-5">mastery learning</a> throughout.  Another great example is the fishing minigame:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XTxRzAwggEg?start=96" frameborder="0" allowfullscreen></iframe>
+
+
+<p>Once you hook a fish, you enter a minigame where the fish bobs and jumps around this track while you try to keep the yellow bar underneath it.  You gradually learn where to find different species and how they move along this track, to the point where you can guess what you&rsquo;re catching before you actually catch it.  If you&rsquo;re following the community centre path, this knowledge becomes vital in tracking down the fish you need to deliver.</p>
+
+<p>Stardew Valley also adds a combat system, where you enter a sort of roguelike dungeon-crawling mode to find precious metals and other unique resources.  Some of these resources can&rsquo;t be found anywhere else in the game, and the metals and resources alike help to build gadgets that improve your farm: automatic watering sprinklers, mayonnaise machines, etc.  Speaking of sprinklers, those also appeared in Harvest Moon, but you simply bought them from the Tool Shop; by tying these upgrades to dungeon exploration, it really gives you that satisfying &ldquo;I earned this the hard way!&rdquo; feeling familiar to Survival-mode Minecraft players.</p>
+
+<p>And, finally, Stardew Valley has some wonderful comedic moments, like when you find Mayor Lewis' purple underpants in Marnie&rsquo;s room and decide to add them to your grange display at the Harvest Festival:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/stardew-valley-underpants.png" title="Mayor Lewis' underpants" alt="Mayor Lewis' underpants" /></p>
+
+<p>So: not that this is a review, but if it were, I&rsquo;d be telling you to go out and buy this game right now.  Since it&rsquo;s not, though, I&rsquo;ll say that it&rsquo;s refreshing to see games tackling thorny subjects in increasingly approachable ways, and it&rsquo;s also amazing to see another successful and engaging simulation game!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Adventure Games]]></title>
+    <link href="https://blog.savageinter.net/blog/2017/04/14/adventure-games/"/>
+    <updated>2017-04-14T12:05:26-04:00</updated>
+    <id>https://blog.savageinter.net/blog/2017/04/14/adventure-games</id>
+    <content type="html"><![CDATA[<p>We were suuuuuper excited about the recent release of <a href="https://thimbleweedpark.com/">Thimbleweed Park</a>, which bills itself as a &ldquo;new classic adventure game&rdquo;. From their website:</p>
+
+<blockquote><p>Welcome to Thimbleweed Park. Population: 80 nutcases.</p>
+
+<p>A haunted hotel, an abandoned circus, a burnt-out pillow factory, a dead body pixelating under the bridge, toilets that run on vacuum tubes&hellip; you&rsquo;ve never visited a place like this before.</p>
+
+<p>Five people with nothing in common have been drawn to this rundown, forgotten town. They don&rsquo;t know it yet, but they are all deeply connected. And they&rsquo;re being watched.</p>
+
+<p>In a town like Thimbleweed Park, a dead body is the least of your problems.</p></blockquote>
+
+<p>I&rsquo;ve always been a big-time adventure game buff (to the point that I have a <a href="https://www.facebook.com/valkyrie/posts/10105575236967289">tattoo of King Graham&rsquo;s adventurer&rsquo;s cap</a>), and I had a copy of Thimbleweed park reserved long before it came out. I followed their <a href="https://blog.thimbleweedpark.com/">development blog</a> religiously. The day the game came out, we sat down to play for several hours. We also played several more hours over the weekend that followed. We elected to try the &ldquo;Hard&rdquo; mode, which features all the puzzles, as opposed to the &ldquo;Story&rdquo; mode, which cuts many of them.</p>
+
+<p>It was&hellip; kind of a bummer.</p>
+
+<p>Don&rsquo;t get me wrong, it isn&rsquo;t a horrible game. It&rsquo;s actually been extremely well-reviewed (4/5, 9/10, etc., all over their main page). It has some funny stuff in it. This is a game that recognizes that it&rsquo;s carrying the banner of a lost art, and contains a healthy dose of self-referential humour to that effect. In keeping with the age-old inter-studio adventure game battle, it also pays lip service to Lucasfilm games and how they don&rsquo;t allow dying (as contrasted with Sierra and other adventure game-makers). It&rsquo;s got a fresh design aesthetic, though it keeps the pixels and the 9-verb interface from days of yore.</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/thimbleweed-ui.png" title="Thimbleweed Park User Interface Screenshot" alt="Thimbleweed Park User Interface Screenshot" /></p>
+
+<p>But the game designers make some assumptions that don&rsquo;t seem to be true anymore. The most important one here seems to be that these sort of item-shuffling exploration games are truly the best we can do as far as simulating adventures. Another one is that dying in games is bad. Finally, there&rsquo;s that 9-verb interface.</p>
+
+<h3>Adventuring and Item Games</h3>
+
+<p>Back in the 1970s and &lsquo;80s, adventure games grew out of the booming role-playing industry and the desire that fed it: to be someone else, doing something else, for a little while. The appeal of games like Dungeons &amp; Dragons is that you, the player, have full control over the activity of the game. However, along with this comes a management system that is still considered too complicated for most people to pick up. It didn&rsquo;t take long for people to integrate this system into computer games: for obvious reasons it&rsquo;s much easier to play a D&amp;D-based game than it is to manage a tableful of dice with varying numbers of sides. This also loses out on the total freedom that can come from having a human control the game system, but role-playing-type adventure games today are <em>really</em> popular. Final Fantasy. Deus Ex. Persona. World of Warcraft. Neverwinter Nights. The Elder Scrolls.</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/wow.jpg" title="World of Warcraft Screenshot" alt="World of Warcraft" /></p>
+
+<p>So what&rsquo;s the difference between a modern role-playing game and a classic adventure game? They both have &ldquo;quests&rdquo;, in some sense. Thimbleweed Park very helpfully tracks these in a journal held by each of its playable characters:</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/thimbleweed-journal.png" title="Thimbleweed Park Journal Screenshot" alt="Thimbleweed Park Journal Screenshot" /></p>
+
+<p>This is a <em>definite</em> interface improvement over early adventure games (I remember my grandpa&rsquo;s notebooks filled with scribbles about puzzles still to solve), but it&rsquo;s basically the equivalent of quest logs in modern RPGs.</p>
+
+<p>Both kinds of games also tend to have a small number of types of quests: the most common one in adventure games is the &ldquo;Delivery Quest&rdquo; (you can see the rest enumerated, for example, on <a href="http://www.mmorpg.com/blogs/UnSub/022009/3303_kill-10-fedex-princesses-the-10-basic-types-of-mmo-quests">mmorpg.com</a>). This is not a quest type I love. It basically asks a player to find a particular object and bring it to a particular person. In adventure games, this often involves some kind of intermediate processing (&ldquo;I don&rsquo;t want a <em>blue</em> catfish, you have to paint it <em>red</em> first!&rdquo;).</p>
+
+<p>So&hellip; are these kinds of quests still the best way we have to simulate adventuring?</p>
+
+<p>This question seems especially sticky since we got our first chance to play <a href="http://www.zelda.com/breath-of-the-wild/">The Legend of Zelda: Breath of the Wild</a> over the weekend. It foregrounds a different kind of game system, where environments are based around physics rather than around pre-determined interactions. You can cut down a tree, and watch it roll downhill to destroy your enemies. When you&rsquo;re walking up a steep slope, if it becomes too steep to walk, your character will start climbing instead. If you grab a wooden club, you can set it on fire, and this can end in tears if you are careless about swinging it in long grass (yes, we did die in the game from a wildfire of our own creation, whoopsie).</p>
+
+<p>I don&rsquo;t have an answer here, but with new kinds of games available it seems that the &ldquo;adventure game&rdquo; moniker feels a bit out of date.</p>
+
+<h3>Dying and The Stakes</h3>
+
+<p>One feature heavily pushed by in-game jokes as well as on the Thimbleweed Park <a href="https://blog.thimbleweedpark.com/">development blog</a> is that this game is designed without dead ends. The designers describe what they see as two typical problems with classic adventure games:</p>
+
+<ol>
+<li>it is possible to not pick up all necessary items, pass through a &ldquo;gate,&rdquo; and find yourself in an unfinishable game state.</li>
+<li>you can die.</li>
+</ol>
+
+
+<p>The first issue is definitely a closely-held frustration for me. I once almost finished KQVI&hellip; only to realize that I hadn&rsquo;t sent a message with a nightingale approximately 2.5 hours previously and was now unable to defeat the final boss.</p>
+
+<p>But what about that second thing? Is dying really so bad?</p>
+
+<p>Certainly it can be. Classic adventure games handed out the death penalty for seemingly-small things:</p>
+
+<ul>
+<li>walking into an inn</li>
+<li>eating a pie</li>
+<li>typos</li>
+<li>killing a snake</li>
+</ul>
+
+
+<p>If you fell to one of these happenings, you were left to reload such saves as you might have and play on from there. That&rsquo;s not very nice, but in today&rsquo;s world of auto-save it&rsquo;s not such a big deal (as long as you&rsquo;ve already dealt with issue 1).</p>
+
+<p>There has been some discussion on the web (for example, <a href="http://kotaku.com/should-more-video-games-punish-players-for-dying-1595725498">Kotaku</a>) about whether dying in video games already means too little. The stakes are low when dying is meaningless (or even not present). Wandering around Thimbleweed Park, we found ourselves feeling a total lack of tension. Why should we be driven to solve this mystery? There isn&rsquo;t time pressure of any kind. There&rsquo;s no reason we shouldn&rsquo;t just click on everything, or say rude things to the townspeople, or try to accomplish ridiculous feats with the chainsaw. In a game where there is no death and no way to lose&hellip; well, where&rsquo;s the fun in that?</p>
+
+<h3>The Frustrations of 9-Verb interfaces</h3>
+
+<p>Adventure games started as pure text, but grew into graphical adventures as technology allowed. The original, Colossal Cave Adventure (or, simply, &ldquo;Adventure&rdquo;), was purely text. By the time my dear King&rsquo;s Quest IV came out, interfaces mixed text and the keyboard for input. This had the cool feature that you could try a huge variety of things, and the frustrating feature that the computer didn&rsquo;t understand most of them.</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/kqiv-text.jpg" title="King's Quest IV User Interface Screenshot" alt="King's Quest IV User Interface Screenshot" /></p>
+
+<p>A bit later, developers experimented with a verb-based interface that was triggered with the mouse. In Space Quest IV (the SQXII in the screenshot is an in-game joke), input was through clicking on various objects. You could change the &ldquo;verb&rdquo; you employed by right clicking, or by hovering over the title bar and selecting the verb once the list appeared.</p>
+
+<p><img src="https://blog.savageinter.net/images/posts/sqiv.jpg" title="Space Quest IV User Interface Screenshot" alt="Space Quest IV User Interface Screenshot" /></p>
+
+<p>Thimbleweed Park, as you saw, uses the 9-verb interface that became more-or-less standardized around 1990. Open, Close, Give, Pick Up, Look At, Talk To, Push, Pull, and Use. Walking is triggered by clicking without selecting a verb.</p>
+
+<p>Trying to use the elevator in-game is a classic &ldquo;adventure game moment&rdquo;. A right click opens or closes the elevator when on the doors, a right click looks at the elevator when it is open and the cursor is not on the doors, and a left click walks. Ideally, to get in the elevator, you right click, then left click. We have gotten this wrong <em>many</em> times, and been treated to hearing each and every character tell us what an elevator looks like. Or closing the door when we meant to get on. Etc. It wouldn&rsquo;t be an adventure game without some usability problems.</p>
+
+<p>But, really, why do we have this interface? With any given on-screen object, there are only a few things a player would conceivably want to do with it. I don&rsquo;t want to &ldquo;look at&rdquo; the path offscreen to the next site. I don&rsquo;t want to &ldquo;pull&rdquo; the hotel manager. Having more sensible defaults on mouse buttons (which could adapt per-item for maximum sensibleness) would feel liberating here. Modern console games typically get away with a single button that means &ldquo;interact&rdquo;. This might lose some of the subtle interaction possibilities that are part of the adventure game canon, but most of those failed interactions are just annoying, and don&rsquo;t even have dedicated jokes or animation (the generics: &ldquo;Why would I want to do that?&rdquo;, &ldquo;I&rsquo;m not putting my lips on that&rdquo;, &ldquo;What would you do with it if you had it?&rdquo;).</p>
+
+<h3>Concluding</h3>
+
+<p>Adventure games aren&rsquo;t sole heirs to the throne of adventure any longer. We now have better ways to feel like we&rsquo;re questing, ones without deliberately obtuse quests, with more tension, and with more satisfying interfaces. I&rsquo;m not sorry we picked up Thimbleweed Park, but it wasn&rsquo;t all I had dreamed it would be.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[On Blogs]]></title>
+    <link href="https://blog.savageinter.net/blog/2017/04/10/on-blogs/"/>
+    <updated>2017-04-10T13:43:58-04:00</updated>
+    <id>https://blog.savageinter.net/blog/2017/04/10/on-blogs</id>
+    <content type="html"><![CDATA[<p>Welcome to the <a href="https://savageinter.net">Savage Internet</a> company blog!  You can follow our blog via <a href="http://localhost:4000/atom.xml">RSS</a> to keep on top of Savage Internet thoughts, announcements, and game design notes!</p>
+
+<p>We&rsquo;re currently preparing for our upcoming July release of The Puzzling Madness of John A. Macdonald, a scavenger / puzzle hunt set in Confederation-era Toronto.  We&rsquo;ll have more information as development continues!  In the meantime, those interested in playtesting the game before July can fill out our <a href="https://goo.gl/forms/1sLRIZEUzEf9ViLJ3">playtester signup form</a>.</p>
+
+<p>We&rsquo;re also working with Toronto-area scientists to plan something exciting for <a href="http://www.ryerson.ca/sciencerendezvous/">Science Rendezvous Dundas Square</a> on May 13, 2017.  Until then, our lips are sealed - you&rsquo;ll have to attend or wait until afterwards for the recap, which we&rsquo;ll post here!</p>
+]]></content>
+  </entry>
+  
+</feed>

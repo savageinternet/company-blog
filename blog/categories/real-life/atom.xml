@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Real-life | The Savage Internet Blog]]></title>
+  <link href="https://blog.savageinter.net/blog/categories/real-life/atom.xml" rel="self"/>
+  <link href="https://blog.savageinter.net/"/>
+  <updated>2022-01-22T15:12:13+00:00</updated>
+  <id>https://blog.savageinter.net/</id>
+  <author>
+    <name><![CDATA[The Savage Internet Team]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Playtesting #Canada150]]></title>
+    <link href="https://blog.savageinter.net/blog/2017/07/01/canada-150/"/>
+    <updated>2017-07-01T11:43:51-04:00</updated>
+    <id>https://blog.savageinter.net/blog/2017/07/01/canada-150</id>
+    <content type="html"><![CDATA[<p>We&rsquo;ve been hard at work on <a href="https://puzzlingmadness.ca">The Puzzling Madness of John A. Macdonald</a> for the last several months. This game is a blend of escape room and historical tour: it leads players to physically walk across downtown Toronto as they solve puzzles, examine historical buildings, and meet 19th-century Canadians. Ultimately, players unravel a mystery that is threatening Confederation itself!</p>
+
+<p><img src="/images/posts/pm-header.jpg" title="Evan as one of our historical characters, next to Maki as a player" alt="Header for Puzzling Madness" /></p>
+
+<p>This project came about when we were having brunch with a friend of ours, <a href="http://hillarypredko.com/">Hillary Predko</a>, back at the very beginning of our time in Toronto. She mentioned that, since 2017 is Canada&rsquo;s sesquicentennial, there is lots of funding available for Canada150-themed projects. After lunch, we sat down to brainstorm, and decided that we could make something really cool for Canada&rsquo;s Big Year.</p>
+
+<p>Thus, Puzzling Madness was born. We&rsquo;ve been working on it on and off since November, but really put our noses to the grindstone around March. So far we have done 3 playtests, working out kinks in the system and puzzles. That&rsquo;s the process I&rsquo;m excited to write about today!</p>
+
+<p>One of the very most important topics for running playtests like these is reassuring your players that it isn&rsquo;t <em>them</em> that you are testing: it&rsquo;s your game. You have to keep your players happy and engaged, and if they are frustrated at puzzles it&rsquo;s critical that they know it&rsquo;s your shortcoming and not theirs. For escape room-type games, where not everyone is supposed to succeed, this leads to an interesting conundrum: you want some of your testers to get through the puzzles, but not everyone, so you are testing for &ldquo;average&rdquo; ability at the same time you test for the challenge level of your puzzles.</p>
+
+<p>Another key point is to know what you&rsquo;re testing for each time you run a test, as this will inform extra equipment you need to bring or extra information you need to record as you go. Do you want to get timings down? Make sure you bring a watch. Do you want to see how tricky a particular puzzle is? Interview participants as they think through it. Are you focusing on characterization or storytelling? Be certain you have questions in your questionnaire dealing with that, and collect images of player reactions to &ldquo;cutscenes&rdquo; or other character interactions.</p>
+
+<h2>Playtest 1: Length</h2>
+
+<p><img src="/images/posts/pm-pt1.jpg" title="The 8 playtesters who joined us for our first playtest in March, standing in front of a historical site" alt="Playtest 1 for Puzzling Madness" /></p>
+
+<p>Our first playtest, way back in March, was on an unfortunately drizzly and cold day. We had 8 players out: the very first people to see any of our puzzles or storyline. Things immediately started going wrong, but ultimately everyone had fun. We spent about 5 hours with our team before calling it a day.</p>
+
+<h3>Visual Confirmation</h3>
+
+<p>First off, for one of our puzzles we had players find historical plaques marked on a map. The information we used to construct the map came from an enormously helpful and awesome website: <a href="http://torontoplaques.com">the Toronto Plaque Map</a>. Unfortunately, we didn&rsquo;t actually verify a couple of the plaque locations physically, which meant that two things happened: 1) one plaque was no longer visible due to some construction around the area, and 2) we had some transcription errors in putting the plaques on our map.</p>
+
+<h3>Weather-dependent</h3>
+
+<p>In this playtest, players wound up taking several breaks to go inside in order to solve puzzles. This pointed to a few shortcomings in the game: first off, if it&rsquo;s possible to solve the puzzles while indoors at a table, then they aren&rsquo;t very well tied to the physical historical locations. Second off, it drove home the point that an outdoor puzzle game really is weather-dependent. We&rsquo;re crossing our fingers for a warm, sunny day.</p>
+
+<h3>Puzzle challenge and target market</h3>
+
+<p>We are big puzzlers. We have played in puzzle hunts, done escape rooms, and even designed puzzle games for each other for our birthdays (see <a href="https://drive.google.com/drive/folders/0B015tvjlD7Dmc0VqOGpyUmZhSkU?usp=sharing">Doc Savage: Woman of Bronze</a>, for example). That said, we made some of our puzzles in the original version of the game&hellip; a little too sadistic. This led to a serious conversation about the kinds of people we are hoping to have play the game, whether they are serious puzzle people who know nothing of history, people curious about history who enjoy light puzzling, people who are history buffs and don&rsquo;t know anything about history, or some other group entirely. At this time, we decided to split our game into two &ldquo;modes&rdquo;: Puzzle Mode that will cater to hardcore puzzle solvers, and &ldquo;Story Mode&rdquo; that will focus on delivering an interesting historical story for people less interested in puzzles.</p>
+
+<h3>We have to go&hellip; where??</h3>
+
+<p>Our initial design for the game had players begin at Union Station, walk out to the St. Lawrence Market, walk back through old town Toronto, head north through mid-town and visit the YWCA among other places, and finally wind up with a series of puzzles across the University of Toronto&rsquo;s campus. Looking at a map, we could see that this amount of walking should take ~45 minutes on its own, and we figured for a 3 hour experience giving players 2h15min to solve puzzles (we had 30 in total in this version) would be <em>plenty</em>. Ha. Ha ha. Well, that one&rsquo;s on us. Of course, between bugs in the puzzles and the enormous distances to cover, our players only managed to get through about &frac14; of the material we&rsquo;d written. When we decided to call it a day, we debriefed everybody on what was &ldquo;supposed to&rdquo; happen.</p>
+
+<h3>Ultimately</h3>
+
+<p>Ultimately this test was successful in that we learned a lot from it, although we felt bad about having given a pretty sucky game experience to our players. We tried to justify this by reminding ourselves that we did buy them lunch and dinner. :) We improved our playtest procedures for the following test, in addition to significantly overhauling the game itself.</p>
+
+<h2>Playtest 2: Puzzle Mode</h2>
+
+<p><img src="/images/posts/pm-pt2.jpg" title="Some of the playtesters who joined us for our second playtest, solving a tricky puzzle" alt="Playtest 2 for Puzzling Madness" /></p>
+
+<p>After our first playtest with a group of what we determined would become &ldquo;story mode&rdquo;, we were eager to do a test with a group of &ldquo;puzzle mode&rdquo; playtesters. We managed to recruit a full team of testers who all worked together, and who had completed several escape room games together. One of the group members had also done puzzle hunts in the past. The day we ran the playtest was a little cool, but fortunately dry!</p>
+
+<h3>Puzzles and challenge</h3>
+
+<p>These players <em>loved</em> our puzzles. Several of the re-done puzzles in this version required leaps of logic, and there were a few pretty unusual puzzle mechanics that nobody in the group had seen before. They enjoyed exploring the city, and everyone said that they had visited or noticed something new in the process of going through the game.</p>
+
+<h3>Teamwork</h3>
+
+<p>One thing we did notice during the playthrough, though, was that the one player who had previously done a lot of puzzle games was &ldquo;carrying the team&rdquo;, in the sense that he was given control of the map and puzzle booklet, and was heavily involved in solving all of the puzzles. One mechanic we had designed to combat this was that each player takes on a character: they are a historical person with particular knowledge that applies to one or two puzzles in the game. In this way, we hoped to give everyone a chance to shine over the course of the experience. In practice, what happened was that most players gave their clue sheets to one person, who then effectively ran the show.</p>
+
+<p>Another issue for teamwork was that we only printed a few of the puzzle booklets, so not enough copies of information were available for all players to be active on a puzzle at the same time. For the next test, we determined to print enough copies that each person could have all the information necessary.</p>
+
+<h3>Story</h3>
+
+<p>While the first group simply didn&rsquo;t have enough time to experience the story, the second group had no interest in it. They were fixated on the puzzles (as they should have been, since they were the puzzle mode group!), and there was no mechanic that forced them to interact with the non-player characters that we had built into the game. The next iteration would see required interaction preceding each puzzle.</p>
+
+<h3>Ultimately</h3>
+
+<p>This test made us realize that separating puzzle mode and story mode, while attractive in the sense that it meant we could use more of the material we had already generated, wasn&rsquo;t, in fact, feasible for this game. Maintaining two totally different sets of puzzles, keeping track of minor differences in actor scripts, and all the other bookkeeping that goes along with doing two things when you should just be doing one turned out to be a little overwhelming for a 2-person team.</p>
+
+<h2>Playtest 3: The End!</h2>
+
+<p><img src="/images/posts/pm-pt3.jpg" title="Some of our playtesters for test #3, working their way through a blindfold activity we have since scrapped" alt="Playtest 3 for Puzzling Madness" /></p>
+
+<p>Our major goal for this playtest was to get players to the big finale we had planned at all costs, since our original plan was to launch the full game a couple weeks after the test and none of our groups had yet made it that far. We planned to give hints, liberally if necessary, to ensure that this would happen.</p>
+
+<h3>Papers, please</h3>
+
+<p>Having learned from our last test, we gave everyone a copy of everything for this playtest. There was no longer secret information for each player, and there were enough copies of each sheet that everyone could collaborate on every puzzle. Or, at least, that was what we expected. What happened was that players got overwhelmed with the sheer amount of paper they had to carry, and had challenges in organizing it. Many of the hints we gave were of the form, &ldquo;you have other information&rdquo;, just to remind players that we had given them a clue sheet back at the beginning of the game. We are still working out what the &ldquo;magic&rdquo; amount of information is going to be for the game to come off smoothly.</p>
+
+<h3>Weather strikes again</h3>
+
+<p>With all the paper we were handing out, it seems like a cosmic joke that the day was also off-and-on rainy. Everything was soaked at the end of the day, and players had to find shelter under a variety of overhangs in order to even use the papers we had given them. Since we had no lamination or other waterproofing, the pencils we&rsquo;d handed out also failed to work on the wet paper. Lesson learned: for the next playtest we&rsquo;ll be using grease pencils and laminated sheets.</p>
+
+<h3>Group size</h3>
+
+<p>We had a fairly small group for this test: just 5 people. This gave them a lot of time to interact with each other and build up a rapport for puzzle solving, and also meant that all of them were busy most of the time: there simply wasn&rsquo;t an opportunity for one person to sit idle. However, since we&rsquo;re targeting groups of 12 in the final game, this gave us some pause. Even a group of 5 was able to get through the game to the finished in the amount of time we&rsquo;d allotted, which meant that we needed to step our puzzle game up a little to keep it interesting for a larger group. In our next test run, we&rsquo;ll be trying out parallel puzzles at each location: half the group can work on one puzzle, while half works on another, and the two parts will pop out the solution for that location.</p>
+
+<h3>Blindfolds aren&rsquo;t for everyone</h3>
+
+<p>Every group we have tested with so far has completed a blindfolded activity that we designed. We really wanted this to be a part of the game (for story reasons), but it turned out to be too fiddly to set up, to take too long, and to be frightening for some players. Since we are expecting that some groups will be composed of people who don&rsquo;t know each other yet, we don&rsquo;t want to make them uncomfortable. After tweaking the rules of this activity for every group that we tested with, we finally decided to scrap it.</p>
+
+<h3>Ultimately</h3>
+
+<p>This was our most successful playtest yet, which is a good thing since generally you want to be improving each time you put something in front of people. :) We are basically at the length that we are targeting, people had fun, the puzzles weren&rsquo;t too hard, and the story went smoothly. The few tweaks we are making for the next test are pretty doable, and we&rsquo;re excited about it!</p>
+
+<h2>Next up</h2>
+
+<p>We&rsquo;ll be running a couple of playtests in July before we finally have our launch day on August 19th. The July 15th group is already full, but if you can join us <a href="https://docs.google.com/forms/d/e/1FAIpQLSew-nLvEqMnZ36ZBptAAv86DW5LVxcXRdaD8aYtF3B_WR6Xew/viewform?usp=sf_link#responses">on July 30th</a>, we&rsquo;d love to have you!</p>
+
+<p>We&rsquo;re also putting together a trailer video that you&rsquo;ll be able to share with your friends. We&rsquo;ll definitely share that on here once it&rsquo;s ready.</p>
+
+<p>The playtesting thus far has been hard but rewarding. It&rsquo;s a bit of a bummer to lose your weekends for a month to work, but we&rsquo;re looking forward to the payoff.</p>
+
+<p>Happy Canada Day!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zombies!]]></title>
+    <link href="https://blog.savageinter.net/blog/2017/05/15/zombies/"/>
+    <updated>2017-05-15T12:05:26-04:00</updated>
+    <id>https://blog.savageinter.net/blog/2017/05/15/zombies</id>
+    <content type="html"><![CDATA[<p>Between volunteering at <a href="http://www.torontocomics.com/">TCAF</a> and with the <a href="http://handeyesociety.com/">Hand Eye Society</a> and visiting with a friend passing through town, we spent some time this weekend at Ryerson&rsquo;s <a href="http://www.ryerson.ca/sciencerendezvous/">Science Rendezvous</a>, an annual science fair and festival taking place across Toronto, playing with the <em>science of zombies</em>.</p>
+
+<p><img src="/images/posts/booklet.jpg" title="the booklet we developed for Zombie Rendezvous" alt="Zombie Rendezvous Booklet" /></p>
+
+<p>A couple months ago, we heard that two members of <a href="https://www.scicommto.com/">SciCommTO</a>, Toronto&rsquo;s meetup for science communicators, were working on a <a href="https://boardgamegeek.com/boardgame/30549/pandemic">Pandemic</a>-style board game showcasing a zombie infection on Prince Edward Island. They had used the game to teach the basic principles of disease transmission, as well as emphasize the differences in infections caused by fungi, viruses, and bacteria.</p>
+
+<p>Now, they wanted to bring the game and information to a wider audience. We met up with <a href="http://www.glse.utoronto.ca/amanda-veri-molecular-genetics">Amanda Veri</a> and <a href="https://ontariomolecularpathology.ca/content/elliann-fairbairn">Elliann Fairbairn</a> to think about how that might work. The main audience for Science Rendezvous is kids ages 4-12, which was very different from the audience their board game was designed for (high school kids and adults). The game also had to be made significantly shorter, so that it could hold the attention of a hypothetical family trying to navigate Yonge-Dundas square with science experiments and science magic shows on all sides of them. In addition, the game couldn&rsquo;t really require players to sit down to learn rules, and it had to be playable outdoors.</p>
+
+<p>This list of requirements rang a bell for us. On our <a href="https://ootscoot.savageinter.net/">recent drive across the US and Canada</a>, we were lucky enough to spend time in several National Parks and -Monuments in both countries. In the US, the National Parks Service runs a <a href="https://www.nps.gov/kids/jrrangers.cfm">junior ranger program</a> for folks visiting: you ask for a booklet at the beginning of your visit, then you carry it around the park with you and complete activities as you hike, listen, learn, and explore. We went all the way through the booklets for Devils Tower National Monument and Yellowstone National Park.</p>
+
+<p><img src="/images/posts/junior-ranger.jpg" title="Junior Ranger Booklets from Devils Tower and Yellowstone" alt="Junior Ranger Booklets from Devils Tower and Yellowstone" /></p>
+
+<p>These booklets have a range of activities, and they are built to accommodate multiple age groups within the same booklet. In general, older kids (and adults!) need to complete more activities than younger ones, and their activities are more complex. A 4-year-old might dance like a leaf, while a 12-year-old might read a few paragraphs and fill in a crossword puzzle. At all ages, junior rangers must go on a hike and listen to a ranger talk while at the park.</p>
+
+<p>We all agreed that this would be a great basis for the kind of experience we wanted to develop. The final product has a collection of activities which are completed at pre-defined stops, where volunteers keep the game moving with some hands-on activities and help participants complete the related booklet pages.</p>
+
+<h2>Characters</h2>
+
+<p>Our game has four stops: zombie, doctor, pathologist, and researcher. Players are infected, then go through the process of identifying their infection type and helping develop a cure for it.</p>
+
+<h3>Zombie</h3>
+
+<p><img src="/images/posts/zombie.jpg" title="one of our zombies" alt="zombies" /></p>
+
+<p>Zombies roam around the event, searching for kids and families to &ldquo;infect&rdquo; with zombism. Each zombie has a collection of activity booklets, which are coded to let other volunteers know which kind of infection each person has. When a zombie infects a player, they note the time (players have only 30 minutes to complete the game before they turn into zombies&hellip; forever!). Players take notes about the zombie: how it infected them, how it is behaving, and what it looks like. They are then encouraged to seek out a doctor to help them figure out what is wrong.</p>
+
+<h3>Doctor</h3>
+
+<p><img src="/images/posts/doctor.jpg" title="our doctor" alt="doctor" /></p>
+
+<p>The doctor helps players &ldquo;take a blood sample&rdquo; so that they can identify things that don&rsquo;t belong. In this case, players learn what a virus, bacterium, bacteriophage, and fungal spore look like: they also find out that one of these three things is causing their infection and learn more about how to prevent the spread of infections.</p>
+
+<h3>Pathologist</h3>
+
+<p><img src="/images/posts/pathologist.jpg" title="our pathologist" alt="pathologist" /></p>
+
+<p>A pathologist can create a culture of disease agents. Our pathologist takes the player&rsquo;s &ldquo;blood sample&rdquo; and gives them back a culture showing what that sample would look like when grown. For this, Amanda arranged real cultures of viral, bacterial, and fungal agents, which we sealed for the protection of participants (they were common agents, like bread yeast for the fungal agent, so this was mainly precautionary and not strictly necessary). Participants then had to match their culture to example cultures to determine which kind of infection they had.</p>
+
+<h3>Researcher</h3>
+
+<p><img src="/images/posts/researcher.jpg" title="our researcher" alt="researcher" /></p>
+
+<p>With all the info about their infection in the bag, players scoot over to the researcher who helps them create a cure. In order to create something effective, it is necessary that players have correctly identified their infection, since a cure for a fungal infection does not work on a viral or bacterial infection! Players learn how drugs are designed, and complete a word search for new vocabulary learned in the course of the game.</p>
+
+<h3>The end</h3>
+
+<p>Once players get their cure, they again note the time. If they have completed the game within 30 minutes, they are free! The researcher writes a big &ldquo;WIN&rdquo; in green letters, certifying that they are healthy and no longer infected with zombism. However, if not&hellip; players are now zombies! Either way, everybody gets candy.</p>
+
+<p><img src="/images/posts/zombie2.jpg" title="another of our zombies" alt="zombie number 2" /></p>
+
+<p>A final pair of pages in the book can be completed by participants after they&rsquo;ve gone home. It encourages them to think about what they would want in case of a real zombie infestation, in terms of supplies, shelter, and skills.</p>
+
+<h2>Lessons learned</h2>
+
+<p>We learned a lot over the course of the day. A few of the most important lessons were about group/family dynamics, keeping things from getting scary, pre-game organization, activity design, and &ldquo;advertising&rdquo;.</p>
+
+<h3>Group and family dynamics</h3>
+
+<p>Most of the people at Science Rendezvous showed up as families. The people who played our game ranged from 4 to 60, though most of them were under 12. Often the younger ones showed up with Mom and/or Dad, and it was important to get everyone involved in the activity, but not too much. We started to take the tactic of kneeling down to do activities with the kids, since then they were more engaged with them and it kept Mom and Dad from being tempted to do the activities for them. We also sometimes saw kids who totally split off from their parents to play the game; this was a surprise to us, but given that our locations around the square were pretty obvious, it was never a problem.</p>
+
+<h3>Keeping things from getting scary</h3>
+
+<p>During the beginning of the day, some kids got totally scared off from playing the game because our zombies were too realistic. The zombies developed a strategy: first they asked kids if they wanted to play a game, then they would act like a zombie and bite them, and then &ldquo;change back&rdquo; into a non-scary person who would help them start the activity.</p>
+
+<h3>Pre-game organization</h3>
+
+<p>Since everyone who performed today was a volunteer, we didn&rsquo;t really have a chance to train or even go over the game totally. In the first part of the day, many people &ldquo;lost&rdquo; (i.e., became zombies permanently) because we had not properly set up the pathologist&rsquo;s station beforehand. The agar plates were very challenging to correctly identify visually, and we ended up labelling them with illustrations.</p>
+
+<h3>Activity design</h3>
+
+<p>One of our activities is a word search, which we based off of the Yellowstone Junior Ranger book. It didn&rsquo;t take us long to realize that the word search takes <em>much</em> too long for our game; we originally intended to have people find from 10-20 words depending on their age, but cut it down to 3-8 words to keep their interest. The Yellowstone book, of course, was designed for kids to do as they rode in the car around Yellowstone, which they must do for hours and hours in order to see all the big sights in the park. In that case, a really long activity was a bonus rather than a problem. We didn&rsquo;t think about that when we borrowed their design, so we had to change some things on the fly.</p>
+
+<p>Another fun thing for activity design would be to have an &ldquo;accomplice package&rdquo; along with the kids' game; their parents were in general just as into it as the kids were, but perhaps we could supply some more challenging activities for them to do alongside their kids!</p>
+
+<h3>Advertising</h3>
+
+<p>Our goofy outfits made it more fun for us to run the game, in addition to making it more likely that people would walk up to us and ask what the heck we were doing. Definitely a plus in this situation!</p>
+
+<h2>Reactions</h2>
+
+<p>People of all ages and kinds were really excited about the game. We had praise from parents, educators, kids, and adults who played even without having kids. One kid even went through the game twice. A security guard working at the event walked up to one of our zombies saying, &ldquo;I heard your game is really hard&hellip; can I play?&rdquo; At the end of the event when we were packing up, we were begged by a kid who had heard about &ldquo;the zombie game&rdquo; from someone else and desperately wanted to play. Of course we humoured him.</p>
+
+<p>Overall, it was a satisfying day. While the game didn&rsquo;t take a super long time to put together, and it could still use some tweaking, it was definitely well-received. Perhaps we&rsquo;ll join the festival again next year. :)</p>
+
+<h2>Want to play?</h2>
+
+<p>Want to try out our game&mdash;even though you didn&rsquo;t make it to Science Rendezvous&mdash;, or would you like to run Zombie Rendezvous at a similar event?</p>
+
+<p><a href="https://drive.google.com/file/d/0B0jF681JP2rJcnJySEhudktxenM/view?usp=sharing">Take a look through our booklet</a>, and feel free to use it! We&rsquo;re hereby licensing it under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons CC-BY-NC-SA 4.0</a>, which allows you to reuse it for non-commercial purposes, and even make changes to it, as long as you cite us as the source and allow other people to adapt your booklet in the same way. Here&rsquo;s a <a href="https://drive.google.com/file/d/0B0jF681JP2rJaUxwZjZDaUVWbnc/view?usp=sharing">printer-friendly version of hte booklet</a>, with pages flipped for proper printing and to conserve paper.</p>
+
+<p><img src="/images/posts/group.jpg" title="all of us who worked on the game!" alt="group shot" /></p>
+]]></content>
+  </entry>
+  
+</feed>
